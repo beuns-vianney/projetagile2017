@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-
+		<script src="src-min/ace.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
@@ -20,6 +20,14 @@
 			<div class="paragraph">
 				On souhaite concevoir une fonction qui calcule le suffixe d'un mot donné, c'est-à-dire qui retourne les n dernières lettres de ce mot. Voici la signature de la fonction que vous devez écrire: <code>String suffixe(String mot, int nbLettres)</code>.
 			</div>
+			
+       			<div id="editor" class="editor"></div>
+    			<script>
+        				var editor = ace.edit("editor");
+        				editor.getSession().setMode("ace/mode/java");
+        				editor.setTheme("ace/theme/xcode");
+
+    			</script>
 
 			<div class="paragraph">
 				Donnez une première version de <code> suffixe</code> en supposant que l'indice donné par l'utilisateur est valide.
@@ -27,4 +35,5 @@
 		</div>
 
 	</body>
+
 </html>
