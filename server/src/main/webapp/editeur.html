@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <meta charset="UTF8" />
+    <title>Editeur de texte</title>
+</head>
+
+<body>
+    <h1>Welcome</h1>
+    <script src="src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+    <div id="editor" style="height: 500px; width: 500px"></div>
+    <script>
+        var editor = ace.edit("editor");
+        editor.getSession().setMode("ace/mode/java");
+        editor.setTheme("ace/theme/xcode");
+
+    </script>
+
+
+</body>
+
+</html>

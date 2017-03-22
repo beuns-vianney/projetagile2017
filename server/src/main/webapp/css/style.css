@@ -1,0 +1,53 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {outline: none !important;
+}
+html{
+}
+body{
+	font-family: 'Roboto', 'sans-serif';
+}
+
+.page-title h1 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size:50px;
+	text-align: center;
+	letter-spacing: -2px;
+	color: #333;
+}
+
+.page-title h2 {
+	font-family: 'Roboto', sans-serif;
+	margin-top: -5px;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	color: #555;
+}
+
+.exercice  h1 {
+	font-family: 'Roboto', sans-serif;
+	margin-top: 70px;
+	margin-left: 100px;
+	font-weight: bold;
+	font-size: 23px;
+	text-align: left;
+	color: #555;
+}
+
+.paragraph {
+	font-family: 'Roboto', sans-serif;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	text-align: justify;
+	color: #999;
+}
