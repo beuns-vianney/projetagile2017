@@ -1,12 +1,11 @@
 # Rétrospective de sprint
 
-Nom du scrum master du sprint : 
+Nom du scrum master du sprint : __DELPORTE Allan__
 
 ## Ce que nous avons fait durant ce sprint
-Donnez ici la liste des histoires utilisateurs que vous avez livrés durant ce sprint.
-
+Nous avons défini les user Stories. Ensuite nous avons réalisé le mock up du site sur Balsamiq. Puis nous avons commencé à developper le serveur.
 ## Ce que nous allons faire durant le prochain sprint
-Donnez ici la liste des histoires utilisateurs que vous vous engagez à terminer durant le prochain sprint.
+Nous allons continuer sur le serveur et terminer le mock up.Puis nous allons créer la page d'accueil du site.
 
 ## PDCA 
 ### Qu'avons nous testé durant ce sprint ? 
