@@ -4,5 +4,5 @@
 - **DELPORTE Allan**  
 - **PICAULT Maxime**  
 - **HALLEUX Alexandre**  
-- **ON VERRA WALLAH**  
+- **HADJADJ Juliette** Rest.In.Peace 
 - **MEFTOUH Riad**  
