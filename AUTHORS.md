@@ -1,4 +1,4 @@
-**ÉQUIPES:**  
+**ÉQUIPE:**  
 - **BEUNS Vianney**  
 - **BELS Alexis**  
 - **DELPORTE Allan**  
