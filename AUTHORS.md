@@ -4,5 +4,5 @@
 - **DELPORTE Allan**  
 - **PICAULT Maxime**  
 - **HALLEUX Alexandre**  
-- **HADJADJ Juliette** Rest.In.Peace 
+- **HADJADJ Juliette** R.I.P in Peace
 - **MEFTOUH Riad**  
