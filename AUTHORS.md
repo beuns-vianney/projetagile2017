@@ -1,5 +1,5 @@
 **ÉQUIPES:**  
-	- **BEUNS Vianney**  
+	\t- **BEUNS Vianney**  
 	- **BELS Alexis**  
 	- **DELPORTE Allan**  
 	- **PICAULT Maxime**  
