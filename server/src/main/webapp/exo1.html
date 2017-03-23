@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>TP1: notion de séquence d'instruction et d'alternative</title>
+		<title>TP1 - Exercice n°1</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -10,6 +10,19 @@
 	</head>
 
 	<body>
+	
+		<div class='breadcrumbs'>
+  			<div class='inner'>
+   				<ul class='cf'>
+      					<li><a href="introduction.html"><span>0</span><span>Introduction</span></a></li>
+     					<li><a class='active'><span>1</span><span>Exercice 1</span></a></li>
+      					<li><a href="exo2.html" class='passif'><span>2</span><span>Exercice 2</span></a></li>
+      					<li><a href="exo3.html" class='passif'><span>3</span><span>Exercice 3</span></a></li>
+      					<li><a href="end.html" class='passif'><span>4</span><span>Terminé</span></a></li>
+     				</ul>
+  			</div>
+		</div>
+
 		<div class="page-title">
 			<h1>TP1</h1>
 			<h2>Notion de séquence d'instruction et d'alternative</h2>
@@ -20,8 +33,10 @@
 			<div class="paragraph">
 				On souhaite concevoir une fonction qui calcule le suffixe d'un mot donné, c'est-à-dire qui retourne les n dernières lettres de ce mot. Voici la signature de la fonction que vous devez écrire: <code>String suffixe(String mot, int nbLettres)</code>.
 			</div>
-			
-       			<div id="editor" class="editor"></div>
+
+			<h2>Q1: suffixe v1</h2>
+
+       			<div id="editor" class="editor"> </div>
     			<script>
         				var editor = ace.edit("editor");
         				editor.getSession().setMode("ace/mode/java");
@@ -32,8 +47,24 @@
 			<div class="paragraph">
 				Donnez une première version de <code> suffixe</code> en supposant que l'indice donné par l'utilisateur est valide.
 			</div>
+			
+			<h2>Q2: suffixe v2</h2>
+
+       			<div id="editor2" class="editor"> </div>
+    			<script>
+        				var editor2 = ace.edit("editor2");
+        				editor2.getSession().setMode("ace/mode/java");
+        				editor2.setTheme("ace/theme/xcode");
+
+    			</script>
+
+			<div class="paragraph">
+				Modifiez votre fonction afin qu'elle retourne la chaîne <code>"ERREUR"</code> si l'indice est invalide (négatif ou trop grand par rapport à la longueur du mot).
+			</div>
+			
 		</div>
 
+	
 	</body>
 
 </html>
