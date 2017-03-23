@@ -58,17 +58,17 @@ public class UserResource {
         }
         return user.convertToDto();
     }
-    
-    @POST
-    @Path("/compile")
-    @Produces({"application/json", "application/xml"})
-    public String compiler(@FormParam String code) {
-    	//appel JSON -> String
-    	// String -> File
-    	// File -> Compile
-    	//Return erreur/succes
-    	return null;
-    }
+//    
+//    @POST
+//    @Path("/compile")
+//    @Produces({"application/json", "application/xml"})
+//    public String compiler(@FormParam String code) {
+//    	//appel JSON -> String
+//    	// String -> File
+//    	// File -> Compile
+//    	//Return erreur/succes
+//    	return null;
+//    }
     
     @GET
     public List<UserDto> getAllUsers(@QueryParam("q") String query) {

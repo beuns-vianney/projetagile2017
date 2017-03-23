@@ -12,9 +12,9 @@ import javax.ws.rs.core.MediaType;
 public class ExerciceRessource {
 	
 	@POST
-	public String createExercice(Exercice exo) {
-		System.out.println(exo.getCode());
-		return exo.getCode();
+	public String createExercice(String exo) {
+		System.out.println("ICI ==============> " + new Exercice(exo).getCode());
+		return new Exercice(exo).getCode();
 	}
 
 }
