@@ -9,8 +9,11 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="src-min/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script src="ResizeSensor.js"></script>
     <script src="ElementQueries.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
 
 
 </head>
@@ -29,6 +32,7 @@
         <div id="wrap-editor" clas="-wrap-editor">
             <div id="editor" class="editor"></div>
         </div>
+        <div id="noob" style="height: 80px; width:500px; border: black solid;"></div>
         <script>
             var editor = ace.edit("editor");
             editor.getSession().setMode("ace/mode/java");
@@ -39,7 +43,129 @@
                     $("#editor").width($("#wrap-editor").width() - 12);
                     editor.resize(true);
                 });
+                $("#noob").progressbar({
+                    value: 25,
+                    max: 100
+                });
+
             });
+
+
+            /*  $(function() {
+                  var myChart = Highcharts.chart('noob', {
+                      chart: {
+                          type: 'bar'
+                      },
+
+                      xAxis: {
+                          title: ['Completion']
+                      },
+                      yAxis: {
+                          categories: ["0%", "25%", "50%", "75%", "100%"]
+                      },
+                      series: [{
+                          name: 'Jane',
+                          data: [1]
+                      }, {
+
+                          name: 'John',
+                          data: [3]
+                      }]
+                  });
+              });
+                 Highcharts.setOptions({
+                     colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+                     chart: {
+                         backgroundColor: {
+                             linearGradient: [0, 0, 500, 500],
+                             stops: [
+                                 [0, 'rgb(255, 255, 255)'],
+                                 [1, 'rgb(240, 240, 255)']
+                             ]
+                         },
+                         borderWidth: 2,
+                         plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+                         plotShadow: true,
+                         plotBorderWidth: 1
+                     },
+                     title: {
+                         style: {
+                             color: '#000',
+                             font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+                         }
+                     },
+                     subtitle: {
+                         style: {
+                             color: '#666666',
+                             font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
+                         }
+                     },
+                     xAxis: {
+                         gridLineWidth: 1,
+                         lineColor: '#000',
+                         tickColor: '#000',
+                         labels: {
+                             style: {
+                                 color: '#000',
+                                 font: '11px Trebuchet MS, Verdana, sans-serif'
+                             }
+                         },
+                         title: {
+                             style: {
+                                 color: '#333',
+                                 fontWeight: 'bold',
+                                 fontSize: '12px',
+                                 fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+
+                             }
+                         }
+                     },
+                     yAxis: {
+                         alternateGridColor: null,
+                         minorTickInterval: 'auto',
+                         lineColor: '#000',
+                         lineWidth: 1,
+                         tickWidth: 1,
+                         tickColor: '#000',
+                         labels: {
+                             style: {
+                                 color: '#000',
+                                 font: '11px Trebuchet MS, Verdana, sans-serif'
+                             }
+                         },
+                         title: {
+                             style: {
+                                 color: '#333',
+                                 fontWeight: 'bold',
+                                 fontSize: '12px',
+                                 fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+                             }
+                         }
+                     },
+                     legend: {
+                         itemStyle: {
+                             font: '9pt Trebuchet MS, Verdana, sans-serif',
+                             color: 'black'
+
+                         },
+                         itemHoverStyle: {
+                             color: '#039'
+                         },
+                         itemHiddenStyle: {
+                             color: 'gray'
+                         }
+                     },
+                     credits: {
+                         style: {
+                             right: '10px'
+                         }
+                     },
+                     labels: {
+                         style: {
+                             color: '#99b'
+                         }
+                     }
+                 });*/
 
         </script>
 

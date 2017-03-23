@@ -125,3 +125,15 @@ body {
     height: 100px;
     width: 600px;
 }
+
+.ui-widget-header {
+    border: 1px solid #aaaaaa;
+    background: #cccccc 50% 50% repeat-x;
+    color: #222222;
+    font-weight: bold;
+}
+
+.ui-progressbar .ui-progressbar-value {
+    margin: -1px;
+    height: 100%;
+}
