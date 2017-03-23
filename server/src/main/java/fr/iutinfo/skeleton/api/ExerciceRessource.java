@@ -16,7 +16,8 @@ public class ExerciceRessource {
 	
 	@POST
 	public String createExercice(String code) {
-		File fichier = Exercice.StringtoJava(code.split(":")[1].substring(1, code.split(":")[1].length()-1), "./test.java");
+		String codeNettoye = code.split(":")[1];
+		File fichier = Exercice.StringtoJava(codeNettoye.substring(1, codeNettoye.length()-2), "./test.java");
 		StringBuffer reponseCompilation = new StringBuffer();
 		ArrayList<String> l = (ArrayList<String>) JavaCompilerproject.CompilationIJava(fichier);
 		for (String string : l) {
