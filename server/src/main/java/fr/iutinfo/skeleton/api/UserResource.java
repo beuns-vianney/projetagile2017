@@ -47,7 +47,18 @@ public class UserResource {
         }
         return user.convertToDto();
     }
-
+    
+    @POST
+    @Path("/compile/{code}")
+    @Produces({"application/json", "application/xml"})
+    public String compiler(@PathParam("code") String code) {
+    	//appel JSON -> String
+    	// String -> File
+    	// File -> Compile
+    	//Return erreur/succes
+    	return null;
+    }
+    
     @GET
     public List<UserDto> getAllUsers(@QueryParam("q") String query) {
         List<User> users;
