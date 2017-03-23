@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 public class ExerciceRessource {
 	
 	@POST
+	@Consumes("application/json")
 	@Produces("application/json")
 	public String createExercice(String code) {
 		String codeNettoye = code.split(":")[1];
@@ -29,6 +30,7 @@ public class ExerciceRessource {
 		}
 		if (reponseCompilation.toString().isEmpty())
 			reponseCompilation.append("Compilation Successful\n");
+		System.out.println(reponseCompilation.toString());
 		return reponseCompilation.toString();
 	}
 
