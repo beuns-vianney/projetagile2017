@@ -3,16 +3,42 @@
 <head>
     <meta charset="UTF8" />
     <title>Editeur de texte</title>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 
 <body>
     <h1>Welcome</h1>
     <script src="src-min/ace.js" type="text/javascript" charset="utf-8"></script>
     <div id="editor"></div>
+    <div id="editor" style="height: 500px; width: 500px"></div>
+    <input id="send_code" type="button" value="compiler" />
     <script>
         var editor = ace.edit("editor");
         editor.getSession().setMode("ace/mode/java");
         editor.setTheme("ace/theme/xcode");
+
+        $(document).ready(function() {
+
+            $("#send_code").click(function() {
+                var url = "";
+                console.log("postUserGeneric " + url)
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: url,
+                    data: JSON.stringify({
+                        "data": editor.getValue()
+                    }),
+                    success: function(data, textStatus, jqXHR) {
+                        console.log(data);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log('postUser error: ' + textStatus);
+                    }
+                });
+            })
+
+        });
 
     </script>
 
