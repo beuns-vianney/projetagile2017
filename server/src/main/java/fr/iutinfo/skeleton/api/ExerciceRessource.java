@@ -18,8 +18,11 @@ public class ExerciceRessource {
 	public String createExercice(String code) {
 		String codeNettoye = code.split(":")[1];
 		codeNettoye = codeNettoye.substring(1, codeNettoye.length()-2);
+		System.out.println("ÉTAPE 1: '"+codeNettoye+"'");
 		codeNettoye.replaceAll("\\n", "");
+		System.out.println("ÉTAPE 2: '"+codeNettoye+"'");
 		codeNettoye.replaceAll("\\\"", "\"");
+		System.out.println("ÉTAPE 3: '"+codeNettoye+"'");
 		File fichier = Exercice.StringtoJava(codeNettoye, "./test.java");
 		StringBuffer reponseCompilation = new StringBuffer();
 		ArrayList<String> l = (ArrayList<String>) JavaCompilerproject.CompilationIJava(fichier);
