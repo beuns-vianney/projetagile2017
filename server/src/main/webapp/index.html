@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>TP1: notion de séquence d'instruction et d'alternative</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="ResizeSensor.js"></script>
+    <script src="ElementQueries.js"></script>
+
+
+</head>
+
+<body>
+    <div class="page-title">
+        <h1>TP1</h1>
+        <h2>Notion de séquence d'instruction et d'alternative</h2>
+    </div>
+
+    <div class="exercice">
+        <h1>Exercice 1: suffixe d'un mot</h1>
+        <div class="paragraph">
+            On souhaite concevoir une fonction qui calcule le suffixe d'un mot donné, c'est-à-dire qui retourne les n dernières lettres de ce mot. Voici la signature de la fonction que vous devez écrire: <code>String suffixe(String mot, int nbLettres)</code>.
+        </div>
+        <div id="wrap-editor">
+            <div id="editor" class="editor"></div>
+        </div>
+        <script>
+            var editor = ace.edit("editor");
+            editor.getSession().setMode("ace/mode/java");
+            editor.setTheme("ace/theme/xcode");
+            $(document).ready(function() {
+                new ResizeSensor(jQuery('#wrap-editor'), function() {
+                    $("#editor").height($("#wrap-editor").height() - 12);
+                    $("#editor").width($("#wrap-editor").width() - 12);
+                    editor.resize(true);
+                });
+            });
+
+        </script>
+
+        <div class="paragraph">
+            Donnez une première version de <code> suffixe</code> en supposant que l'indice donné par l'utilisateur est valide.
+        </div>
+    </div>
+
+</body>
+
+</html>

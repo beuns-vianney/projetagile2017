@@ -6,7 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<script src="src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    		<script src="js/ResizeSensor.js"></script>
+   		<script src="js/ElementQueries.js"></script>
 	</head>
 
 	<body>
@@ -49,12 +52,32 @@
 			</div><div class="paragraph">
 				Imaginons un programme qui demande à un utilisateur d'entrer un nombre entier relatif (qui peut être soit négatif, soit nul, soit positif). Les structures conditionnelles vont nous permettre de gérer ces trois cas de figure. La structure de ces conditions ressemble à ça :
 			</div>
-       			<div id="editor" class="editor"></div>
+       			
+			<div id="wrap-editor" class="wrap-editor">
+       			<div id="editor" class="editor"> </div>
+       			</div>
     			<script>
         				var editor = ace.edit("editor");
-        				editor.getSession().setMode("ace/mode/java");
-        				editor.setTheme("ace/theme/xcode");
+           				editor.getSession().setMode("ace/mode/java");
+            			editor.setTheme("ace/theme/xcode");
+            			$(document).ready(function() {
+                				new ResizeSensor(jQuery('#wrap-editor'), function() {
+                    				$("#editor").height($("#wrap-editor").height() - 12);
+                    				$("#editor").width($("#wrap-editor").width() - 12);
+                    				editor.resize(true);
+                				});
+            			});
     			</script>
+			
+			<div class="console , neutre">
+				<b>Serv :</b> En attente de compilation...
+			</div>
+
+		<div class="spacebutton">
+			<button onclick="location.href='exo1.html'" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Précédent</button>
+			<button onclick="location.href='exo3.html'" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Suivant</button>
+		</div>
+
 		</div>
 
 	</body>
