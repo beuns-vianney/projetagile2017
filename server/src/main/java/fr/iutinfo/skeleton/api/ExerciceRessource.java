@@ -1,5 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,9 +15,16 @@ import javax.ws.rs.core.MediaType;
 public class ExerciceRessource {
 	
 	@POST
-	public String createExercice(String exo) {
-		System.out.println("ICI ==============> " + new Exercice(exo).getCode());
-		return new Exercice(exo).getCode();
+	public String createExercice(String code) {
+		Exercice exo = new Exercice(code);
+		File fichier = Exercice.StringtoJava(code, "./test.java");
+		StringBuffer reponseCompilation = new StringBuffer();
+		ArrayList<String> l = (ArrayList<String>) JavaCompilerproject.CompilationIJava(fichier);
+		for (String string : l) {
+			reponseCompilation.append(string+"\n");
+		}
+		System.out.println("ICI ==============> " + exo.getCode());
+		return reponseCompilation.toString();
 	}
 
 }

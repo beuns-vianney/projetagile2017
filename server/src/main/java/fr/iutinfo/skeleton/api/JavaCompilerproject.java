@@ -17,15 +17,20 @@ import javax.tools.ToolProvider;
 
 public class JavaCompilerproject {
 
-	public List<String> CompilationIJava(String path) {
-		List<String> listError=new ArrayList<>();
-		String[] options={"-cp","../ap.jar:."};
-		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
+	public static List<String> CompilationIJava(File fichier) {
+		List<String> listError = new ArrayList<>();
+		
+		String[] options= {"-cp", "../ap.jar:."};
+		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<>();
+		
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-		StandardJavaFileManager fileManager =compiler.getStandardFileManager(diagnosticsCollector, null, null);
-		List<File> pathList = new ArrayList<File>();
-		pathList.add (new File(path));
+		
+		StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnosticsCollector, null, null);
+		List<File> pathList = new ArrayList<>();
+		pathList.add(fichier);
+		
 		List<String> optionsList = new ArrayList<>(Arrays.asList(options));
+		
 		Iterable<String> optionsCompilation = optionsList;
 		Iterable<? extends JavaFileObject> compilationUnits =fileManager.getJavaFileObjectsFromFiles (pathList);
 		CompilationTask task = compiler.getTask(null,fileManager,diagnosticsCollector, optionsCompilation, null, compilationUnits);
@@ -47,11 +52,4 @@ public class JavaCompilerproject {
 		}
 		return listError;
 	}
-	
-	
-	public static void main(String[] args) {
-		JavaCompilerproject ijava=new JavaCompilerproject();
-		ijava.CompilationIJava("./src/pack/HelloWorld.java");
-	}
-
 }

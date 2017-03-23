@@ -18,7 +18,7 @@ public class Exercice {
 		this.numeroExercice=numeroExercice;
 	}
 
-	public File StringtoJava(String stojava,String filepath){
+	public static File StringtoJava(String stojava,String filepath){
 		
 		FileOutputStream fos=null;
 		File stoj=null;
