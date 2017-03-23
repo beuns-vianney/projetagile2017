@@ -16,14 +16,13 @@ public class ExerciceRessource {
 	
 	@POST
 	public String createExercice(String code) {
-		Exercice exo = new Exercice(code);
-		File fichier = Exercice.StringtoJava(code, "./test.java");
+		File fichier = Exercice.StringtoJava(code.split(":")[1].substring(1, code.split(":")[1].length()-1), "./test.java");
 		StringBuffer reponseCompilation = new StringBuffer();
 		ArrayList<String> l = (ArrayList<String>) JavaCompilerproject.CompilationIJava(fichier);
 		for (String string : l) {
 			reponseCompilation.append(string+"\n");
 		}
-		System.out.println("ICI ==============> " + exo.getCode());
+		System.out.println("ICI ==============> " + reponseCompilation.toString());
 		return reponseCompilation.toString();
 	}
 
