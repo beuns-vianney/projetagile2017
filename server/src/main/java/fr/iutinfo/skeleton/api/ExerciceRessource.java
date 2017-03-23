@@ -17,7 +17,10 @@ public class ExerciceRessource {
 	@POST
 	public String createExercice(String code) {
 		String codeNettoye = code.split(":")[1];
-		File fichier = Exercice.StringtoJava(codeNettoye.substring(1, codeNettoye.length()-2), "./test.java");
+		codeNettoye = codeNettoye.substring(1, codeNettoye.length()-3);
+		codeNettoye.replaceAll("\n", "");
+		codeNettoye.replaceAll("\\\"", "\"");
+		File fichier = Exercice.StringtoJava(codeNettoye, "./test.java");
 		StringBuffer reponseCompilation = new StringBuffer();
 		ArrayList<String> l = (ArrayList<String>) JavaCompilerproject.CompilationIJava(fichier);
 		for (String string : l) {
