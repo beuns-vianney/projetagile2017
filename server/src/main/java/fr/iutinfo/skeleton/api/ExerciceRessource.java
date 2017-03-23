@@ -19,7 +19,7 @@ public class ExerciceRessource {
 		String codeNettoye = code.split(":")[1];
 		codeNettoye = codeNettoye.substring(1, codeNettoye.length()-2);
 		System.out.println("ÉTAPE 1: '"+codeNettoye+"'");
-		codeNettoye = codeNettoye.replaceAll("\\\\n", "");
+		codeNettoye = codeNettoye.replaceAll("\\\\n", "\n");
 		System.out.println("ÉTAPE 2: '"+codeNettoye+"'");
 		codeNettoye = codeNettoye.replaceAll("\\\\\"", "\"");
 		System.out.println("ÉTAPE 3: '"+codeNettoye+"'");
@@ -29,6 +29,8 @@ public class ExerciceRessource {
 		for (String string : l) {
 			reponseCompilation.append(string+"\n");
 		}
+		if (reponseCompilation.toString().isEmpty())
+			reponseCompilation.append("Compilation Successful\n");
 		System.out.println("ICI ==============> " + reponseCompilation.toString());
 		return reponseCompilation.toString();
 	}
