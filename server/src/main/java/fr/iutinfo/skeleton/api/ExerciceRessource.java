@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 public class ExerciceRessource {
 	
 	@POST
+	@Produces("application/json")
 	public String createExercice(String code) {
 		String codeNettoye = code.split(":")[1];
 		codeNettoye = codeNettoye.substring(1, codeNettoye.length()-2);
