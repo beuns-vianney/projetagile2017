@@ -105,6 +105,35 @@ body {
 	border: 1px #f0dcf0 solid;
 }
 
+<<<<<<< HEAD
+input[type=text] {
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid #eee;
+}
+
+.inputtitle {
+  width: 30%;
+}
+
+.inputtitle2 {
+  width: 60%;
+}
+
+.left {
+  text-align: left !important;
+  width: 50%;
+}
+
+
+textarea {
+  border : none;
+  border-left:  2px solid #eee;
+  border-bottom:  2px solid #eee;
+  width: 100%;
+  resize: vertical;
+}
+
 ul {
   list-style: none;
   margin-bottom: 0;
