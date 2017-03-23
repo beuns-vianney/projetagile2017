@@ -18,20 +18,16 @@ public class ExerciceRessource {
 	public String createExercice(String code) {
 		String codeNettoye = code.split(":")[1];
 		codeNettoye = codeNettoye.substring(1, codeNettoye.length()-2);
-		System.out.println("ÉTAPE 1: '"+codeNettoye+"'");
 		codeNettoye = codeNettoye.replaceAll("\\\\n", "\n");
-		System.out.println("ÉTAPE 2: '"+codeNettoye+"'");
 		codeNettoye = codeNettoye.replaceAll("\\\\\"", "\"");
-		System.out.println("ÉTAPE 3: '"+codeNettoye+"'");
 		File fichier = Exercice.StringtoJava(codeNettoye, "./test.java");
 		StringBuffer reponseCompilation = new StringBuffer();
-		ArrayList<String> l = (ArrayList<String>) JavaCompilerproject.CompilationIJava(fichier);
+		ArrayList<String> l = (ArrayList<String>) JavaCompilerProject.CompilationIJava(fichier);
 		for (String string : l) {
 			reponseCompilation.append(string+"\n");
 		}
 		if (reponseCompilation.toString().isEmpty())
 			reponseCompilation.append("Compilation Successful\n");
-		System.out.println("ICI ==============> " + reponseCompilation.toString());
 		return reponseCompilation.toString();
 	}
 
