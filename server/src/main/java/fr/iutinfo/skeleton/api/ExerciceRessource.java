@@ -7,7 +7,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/exercice")
 @Produces(MediaType.APPLICATION_JSON)
@@ -15,9 +17,9 @@ import javax.ws.rs.core.MediaType;
 public class ExerciceRessource {
 	
 	@POST
-	@Consumes("application/json")
+//	@Consumes("application/json")
 	@Produces("application/json")
-	public String createExercice(String code) {
+	public Message createExercice(String code) {
 		String codeNettoye = code.split(":")[1];
 		codeNettoye = codeNettoye.substring(1, codeNettoye.length()-2);
 		codeNettoye = codeNettoye.replaceAll("\\\\n", "\n");
@@ -29,9 +31,10 @@ public class ExerciceRessource {
 			reponseCompilation.append(string+"\n");
 		}
 		if (reponseCompilation.toString().isEmpty())
-			reponseCompilation.append("Compilation Successful\n");
-		System.out.println(reponseCompilation.toString());
-		return reponseCompilation.toString();
+			reponseCompilation.append("Compilation Successful !");
+		Message msg = new Message();
+		msg.setRetour(reponseCompilation.toString());		
+		return msg;
 	}
 
 }
