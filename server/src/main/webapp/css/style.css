@@ -63,13 +63,42 @@ body{
 	color: #999;
 }
 
+
+.console {
+	margin-bottom: 30px;
+	height: 50px;
+	border: 1px #eee solid;
+	font-family: 'Roboto', sans-serif;
+	margin-left: 100px;
+	padding-left: 10px;
+	margin-right: 100px;
+	margin-bottom: 20px;
+	font-size: 13px;
+	text-align: justify;
+}
+
+.neutre {
+	color: #333;
+	background-color: #eee;
+}
+
+.valid {
+	color: #333;
+	background-color: #eee;
+}
+
+.error {
+	color: #333;
+	background-color: #eee;
+}
+
+
 .editor {
 	display: block;
 	border : 1px #ddd solid;
 	overflow: auto;
 	margin-left: 100px;
 	margin-right: 100px;
-	margin-bottom: 30px;
 	height: 100px;
 }
 
@@ -301,5 +330,4 @@ text-decoration:none;
   opacity: 1;
   transform: rotate(405deg);
 }
-
 
