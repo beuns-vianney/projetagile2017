@@ -3,7 +3,8 @@ function compile(div_editor, div_button){
         $(document).ready(function() {
 
             $("#"+div_button).click(function() {
-                var url = "v1/exercice";
+                console.log(editor.getValue());
+                var url = "../v1/exercice";
                 console.log("postUserGeneric " + url)
                 $.ajax({
                     type: 'POST',

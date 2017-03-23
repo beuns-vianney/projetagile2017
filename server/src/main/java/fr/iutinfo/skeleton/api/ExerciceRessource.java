@@ -30,6 +30,7 @@ public class ExerciceRessource {
 		}
 		if (reponseCompilation.toString().isEmpty())
 			reponseCompilation.append("Compilation Successful\n");
+		System.out.println(reponseCompilation.toString());
 		return reponseCompilation.toString();
 	}
 
