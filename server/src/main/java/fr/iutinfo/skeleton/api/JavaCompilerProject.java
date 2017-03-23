@@ -15,7 +15,7 @@ import javax.tools.JavaFileObject;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
-public class JavaCompilerproject {
+public class JavaCompilerProject {
 
 	public static List<String> CompilationIJava(File fichier) {
 		List<String> listError = new ArrayList<>();

@@ -1,7 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class Exercice {
@@ -19,7 +20,18 @@ public class Exercice {
 	}
 
 	public static File StringtoJava(String stojava,String filepath){
-		
+		File file = new File(filepath); // chemin absolu
+		try {
+			file.createNewFile();
+			FileWriter writer=new FileWriter(file);
+			writer.write(stojava);  // écrire une ligne dans le fichier resultat.txt
+			writer.close(); // fermer le fichier à la fin des traitements
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return file;
+		/*
 		FileOutputStream fos=null;
 		File stoj=null;
 		try{
@@ -47,7 +59,7 @@ public class Exercice {
 				e.printStackTrace();
 			}
 		}
-		return stoj;
+		return stoj;*/
 	}
 
 	public String getUsername(){

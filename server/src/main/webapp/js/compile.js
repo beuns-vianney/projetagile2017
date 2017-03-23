@@ -1,24 +1,8 @@
-<html>
-
-<head>
-    <meta charset="UTF8" />
-    <title>Editeur de texte</title>
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-</head>
-
-<body>
-    <h1>Welcome</h1>
-    <script src="js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-    <div id="editor" style="height: 500px; width: 500px"></div>
-    <input id="send_code" type="button" value="compiler" />
-    <script>
-        var editor = ace.edit("editor");
-        editor.getSession().setMode("ace/mode/java");
-        editor.setTheme("ace/theme/xcode");
-
+function compile(div_editor, div_button){
+        var editor = ace.edit(div_editor);
         $(document).ready(function() {
 
-            $("#send_code").click(function() {
+            $("#"+div_button).click(function() {
                 var url = "v1/exercice";
                 console.log("postUserGeneric " + url)
                 $.ajax({
@@ -39,10 +23,4 @@
             })
 
         });
-
-    </script>
-
-
-</body>
-
-</html>
+}
