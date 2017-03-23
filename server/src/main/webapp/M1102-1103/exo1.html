@@ -81,29 +81,7 @@
 				});
 			});
 
-			$(document).ready(function() {
-
-				$("#compilationexo1").click(function() {
-					var url = "v1/exercice";
-					console.log("postUserGeneric " + url)
-					$.ajax({
-						type: 'POST',
-						contentType: 'application/json',
-						url: url,
-						dataType : "json",
-						data: JSON.stringify({
-							"code": editor2.getValue()
-						}),
-						success: function(data, textStatus, jqXHR) {
-							console.log(data);
-						},
-						error: function(jqXHR, textStatus, errorThrown) {
-							console.log('postUser error: ' + textStatus);
-						}
-					});
-				})
-
-			});
+			compile("editor2", "compilationexo1");
 
 		</script>
 
