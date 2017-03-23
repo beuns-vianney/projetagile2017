@@ -6,16 +6,19 @@ import java.io.FileOutputStream;
 
 public class Exercice {
 	private String username;
-	private String pathtp;
+	private String pathtp, code;
 	private int numeroExercice;
 
+	public Exercice(String code) {
+		this.setCode(code);
+	}
 	public Exercice(String username,String pathtp,int numeroExercice){
 		this.username=username;
 		this.pathtp=pathtp;
 		this.numeroExercice=numeroExercice;
 	}
 
-	public File StringtoJava(String stojava,String filepath){
+	public static File StringtoJava(String stojava,String filepath){
 		
 		FileOutputStream fos=null;
 		File stoj=null;
@@ -57,6 +60,18 @@ public class Exercice {
 
 	public int getNumeroExercice(){
 		return numeroExercice;
+	}
+	/**
+	 * @return the code
+	 */
+	public String getCode() {
+		return code;
+	}
+	/**
+	 * @param code the code to set
+	 */
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }
