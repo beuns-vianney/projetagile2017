@@ -13,42 +13,32 @@
 	<div class='breadcrumbs'>
 		<div class='inner'>
 			<ul class='cf'>
-				<li><a href="introduction.html" class='active'><span>0</span><span>Introduction</span></a></li>
-				<li><a href="exo1.html" class='passif'><span>+</span><span>Ajout étape</span></a></li>
+				<li><a class='active'><span>0</span><span>Introduction</span></a></li>
+				<li><a href="exo1.html" class='passif'><span>+</span><span>Ajout exercice</span></a></li>
 			</ul>
 		</div>
 	</div>
 
-	<div class="page-title">
+	
 
-		<form action="#" method="post" class="contact-form">
-			<div class="field-container">
-			<input type="text" class="input-h1" name="name" placeholder="Name" />
-			</div>
-			<div class="field-container">
-				<input type="text" class="input-h2" name="email" placeholder="Email" />
-			</div>
-			<div class="field-container">
-				<textarea class="input text-area" name="message" placeholder="Your Message"></textarea>
-			</div>
-		</form>
+	<form action="#">
 
-		<h1>TP1</h1>
-		<h2>Notion de séquence d'instruction et d'alternative</h2>
-	</div>	
-
-	<div class ="exercice">
-		<h1>Introduction</h1>
-		<div class="paragraph">
-			Ce TP a pour but de vous introduire les notions de séquences d'instruction et d'alternative en iJava.
-			Il se compose de 3 exercices.
-			Le premier traite le suffixe d'un mot, les autres ne sont qu'une suite inventée pour présenter le déroulement d'un TP à plusieurs exercices.
-			Ce qui suivra l'exercice numéro 1 n'aura alors aucun sens, je vous transmet mes sincères excuses par avance. Merci.
+		<div class="page-title">
+			<h1><input type="text" class="inputtitle" name="title1" placeholder="Matière - N°TP" /></h1>
+			<h2><input type="text" class="inputtitle2" name="title2" placeholder="Intitulé du TP" /></h2>
 		</div>
-	</div>
+
+		<div class ="exercice">
+			<h1>Introduction</h1>
+			<div class="paragraph">
+				<textarea name="Description" placeholder="Description"></textarea>
+			</div>
+		</div>
+
+	</form>
 
 	<div class="spacebutton">
-		<button onclick="location.href='introduction.html'" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Enregistrer cette page</button>
+		<button onclick="location.href='exo1.html'" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Lancer la création du TP</button>
 	</div>
 
 </body>
