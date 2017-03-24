@@ -71,6 +71,11 @@
         <div id="wrap-editor" class="wrap-editor">
             <div id="editor2" class="editor"> </div>
         </div>
+        
+         <div id="serv2" class="console , neutre">
+            <b>Serv :</b> En attente de compilation...
+        </div>
+        
         <script>
             var editor2 = ace.edit("editor2");
             editor2.getSession().setMode("ace/mode/java");
@@ -88,13 +93,10 @@
                 }
             });
 
-           compile("editor2", "compilationexo1");
+           compile("editor2", "compilationexo1", "serv2");
 
         </script>
 
-        <div class="console , neutre">
-            <b>Serv :</b> En attente de compilation...
-        </div>
 
         <div class="paragraph">
             Modifiez votre fonction afin qu'elle retourne la chaîne <code>"ERREUR"</code> si l'indice est invalide (négatif ou trop grand par rapport à la longueur du mot).

@@ -1,4 +1,4 @@
-function compile(div_editor, div_button) {
+function compile(div_editor, div_button, div_response) {
     var editor = ace.edit(div_editor);
     $(document).ready(function () {
 
@@ -10,12 +10,21 @@ function compile(div_editor, div_button) {
                 type: 'POST',
                 contentType: 'application/json',
                 url: url,
-                dataType: "json",
                 data: JSON.stringify({
                     "code": editor.getValue()
                 }),
                 success: function (data, textStatus, jqXHR) {
-                    console.log(data);
+                    if (data.retour == "Compilation Successful !") {
+                        $("#" + div_response).attr('class', 'console , valid');
+                    } else {
+                        /*    var tab = data.retour.split("</br>");
+                            for(var i = 0; i<tab.length; i++){
+                                $("#" + div_response).text( tab[i] );
+                            }*/
+                        $("#" + div_response).attr('class', 'console , error');
+                    }
+                    $("#" + div_response).text(data.retour);
+
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log('postUser error: ' + textStatus);
