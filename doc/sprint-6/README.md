@@ -1,15 +1,17 @@
 # Rétrospective de sprint
 
-Nom du scrum master du sprint : Maxime Picault
+Nom du scrum master du sprint : Alexandre Halleux
 
 ## Ce que nous avons fait durant ce sprint
-- Amélioration page html avec éditeur
-- Envoie/reception code serveur 
+- Amélioration page html avec éditeur 
+- page coté prof pour rentrer un tp
 - Maniement de l'api HIGHCHARTS
-- Reflechir sur la stratégie de stockage des fichiers
+- Tentative avec  api gitlab /lecture de doc
 
 ## Ce que nous allons faire durant le prochain sprint
-
+- Commencer à manier l'api gitlab
+- La progression  des exercices 
+- Manier l'api Gitlab
 
 ## PDCA 
 ### Qu'avons nous testé durant ce sprint ? 
@@ -27,7 +29,8 @@ Nom du scrum master du sprint : Maxime Picault
 -Base de données
 
 ### À quoi verra-t-on que celà à fonctionné ?
--Le serveur nous renverras compilation succes ou l'erreur
+-Le test nous redirigeras sur google si j'ai bien obtenu un token
+-Les exercices ne seront pas accesible si l'exercice n'est pas bien compilé
 
 # Mémo
 N'oubliez pas d'ajouter une photo du radiateur d'information au moment de la rétrospective.
