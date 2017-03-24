@@ -6,6 +6,7 @@ import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.RepositoryFile;
 
 public class MethodeGitApi {
+	int nombredecommit=0;
 	String serveur;
 	private String Private_token;
 	GitLabApi glapi;
@@ -34,17 +35,22 @@ public class MethodeGitApi {
 		
 		ProjectApi prjapi=new ProjectApi(glapi);
 		prjapi.createProject(projectName, null, description, null, null, null, null, null, null, null, importUrl);
-		
+		System.out.println("projet creer");
 	}
 	
 	public void push_fichier(GitLabApi glapi){
 		
 	}
 	
+	public void modifier_fichier(GitLabApi glapi,Integer projectid,String cheminfichier,boolean compil){
+		RepositoryFileApi rpfapi=new RepositoryFileApi(glapi);
+		//rpfapi.updateFile(rpfapi,projectid,cheminfichier,"Compilation "+nombredecommit+"res: "+compil);
+	}
+	
 	public static void main(String[] args) throws GitLabApiException {
 		MethodeGitApi test=new MethodeGitApi("https://git-iut.univ-lille1.fr", "Hq7godj-TazXi_HF_7Yo");
-		test.Construire_Project(test.getGLAPI(), "test", "dossier test", null);
-	
+		test.Construire_Project(test.getGLAPI(), "test2", "dossier test 2", null);
+		
 	}
 	
 	public GitLabApi getGLAPI(){
