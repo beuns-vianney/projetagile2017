@@ -29,9 +29,9 @@
     </div>
 
     <div class="page-title">
-        <h1> M1102 - TP1</h1>
-        <h2>Notion de séquence d'instruction et d'alternative</h2>
-    </div>
+        <h1>M1102-1103</h1>
+        <h2>TP1 - Notion de séquence d'instruction et d'alternative</h2>
+    </div>  
 
     <div class="exercice">
         <h1>Exercice 1: suffixe d'un mot</h1>
@@ -39,85 +39,115 @@
             On souhaite concevoir une fonction qui calcule le suffixe d'un mot donné, c'est-à-dire qui retourne les n dernières lettres de ce mot. Voici la signature de la fonction que vous devez écrire: <code>String suffixe(String mot, int nbLettres)</code>.
         </div>
 
-        <h2>Q1: suffixe v1</h2>
 
-        <div id="wrap-editor" class="wrap-editor">
-            <div id="editor" class="editor"> </div>
-        </div>
-        <script>
-            var editor = ace.edit("editor");
-            editor.getSession().setMode("ace/mode/java");
-            editor.setTheme("ace/theme/xcode");
-            $(document).ready(function() {
-                new ResizeSensor(jQuery('#wrap-editor'), function() {
-                    $("#editor").height($("#wrap-editor").height() - 12);
-                    $("#editor").width($("#wrap-editor").width() - 12);
-                    editor.resize(true);
-                });
-            });
+        <nav>
+          <ul>
+            <li>
+              <a  id="tab1" class="tab__link" data-tab="1" href="#Q1">Q1: suffixe v1</a>
+          </li>
+          <li>
+              <a id="tab2" class="tab__link" data-tab="2" href="#Q2">Q2: suffixe v2</a>
+          </li>
+      </ul>
+  </nav>
 
-        </script>
-
-        <div class="console , neutre">
-            <b>Serv :</b> En attente de compilation...
-        </div>
-
-        <div class="paragraph">
-            Donnez une première version de <code> suffixe</code> en supposant que l'indice donné par l'utilisateur est valide.
-        </div>
-
-        <h2>Q2: suffixe v2</h2>
-
-        <div id="wrap-editor" class="wrap-editor">
-            <div id="editor2" class="editor"> </div>
-        </div>
-        
-         <div id="serv2" class="console , neutre">
-            <b>Serv :</b> En attente de compilation...
-        </div>
-        
-        <script>
-            var editor2 = ace.edit("editor2");
-            editor2.getSession().setMode("ace/mode/java");
-            editor2.setTheme("ace/theme/xcode");
-            $(document).ready(function() {
-                new ResizeSensor(jQuery('#wrap-editor'), function() {
-                    $("#editor2").height($("#wrap-editor").height() - 12);
-                    $("#editor2").width($("#wrap-editor").width() - 12);
-                    editor2.resize(true);
-                });
-            });
-            $(".passif").click(function() {
-                if ($(".console").hasClass("neutre") || $(".console").hasClass("error")) {
-                    return false;
-                }
-            });
-
-           compile("editor2", "compilationexo1", "serv2");
-
-        </script>
-
-
-        <div class="paragraph">
-            Modifiez votre fonction afin qu'elle retourne la chaîne <code>"ERREUR"</code> si l'indice est invalide (négatif ou trop grand par rapport à la longueur du mot).
-        </div>
+  <section class="content__item">
+     <div id="paragraph1" class="paragraph" data-content="Q1">
+        Donnez une première version de <code> suffixe</code> en supposant que l'indice donné par l'utilisateur est valide.
     </div>
-
-    <div class="spacebutton">
-        <button onclick="location.href='introduction.html'" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Précédent</button>
-        <button type="button" class="button button--sharp-sm button--outline-sharp background--outline" id="next">Suivant</button>
-        <button id="compilationexo1" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Compiler</button>
+    <div id="paragraph2" class="paragraph" data-content="Q2">
+        Modifiez votre fonction afin qu'elle retourne la chaîne <code>"ERREUR"</code> si l'indice est invalide (négatif ou trop grand par rapport à la longueur du mot).
     </div>
-    <script>
-        $("#next").click(function() {
-            if ($(".console").hasClass("neutre") || $(".console").hasClass("error")) {
-                return false;
-            } else {
-                document.location.href = "exo2.html";
-            }
+</section>
+
+<div id="wrap-editor" class="wrap-editor">
+    <div id="editor" class="editor"> </div>
+</div>
+
+<div id="serv1" class="console , neutre">
+    <b>Q1/Serv :</b> En attente de compilation...
+</div>
+
+<div id="serv2" class="console , neutre">
+    <b>Q2/Serv :</b> En attente de compilation...
+</div>
+
+<script>
+    var serv1show = true;
+    var serv2show = false;
+    var editor = ace.edit("editor");
+    editor.getSession().setMode("ace/mode/java");
+    editor.setTheme("ace/theme/xcode");
+    $(document).ready(function() {
+        new ResizeSensor(jQuery('#wrap-editor'), function() {
+            $("#editor").height($("#wrap-editor").height() - 12);
+            $("#editor").width($("#wrap-editor").width() - 12);
+            editor.resize(true);
+        });
+        $("#paragraph1").show();
+        $("#paragraph2").hide();
+        $("#serv1").show();
+        $("#serv2").hide();
+        document.getElementById("tab1").className = "tab__link, is-active";
+
+        $("#tab1").click(function() {
+            $("#paragraph1").show();
+            $("#serv1").show();
+            serv1show = true;
+            serv2show = false;
+            $("#paragraph2").hide();
+            $("#serv2").hide();
+            document.getElementById("tab1").className = "tab__link, is-active";
+            document.getElementById("tab2").className = "tab__link";
         });
 
-    </script>
+        $("#tab2").click(function() {
+            $("#paragraph2").show();
+            $("#serv1").hide();
+            serv1show = false;
+            serv2show = true;
+            $("#paragraph1").hide();
+            $("#serv2").show();
+            document.getElementById("tab2").className = "tab__link, is-active";
+            document.getElementById("tab1").className = "tab__link";
+        });
+
+    });
+    $(".passif").click(function() {
+        if ($(".console").hasClass("neutre") || $(".console").hasClass("error")) {
+            return false;
+        }
+    });
+
+
+    if ( serv1show === true )  {
+        compile("editor", "compilationexo1", "serv1");
+    }
+
+    if ( serv2show === true ) {
+        compile("editor", "compilationexo1", "serv2");
+    }
+
+
+</script>
+
+</div>
+
+<div class="spacebutton">
+    <button onclick="location.href='introduction.html'" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Précédent</button>
+    <button type="button" class="button button--sharp-sm button--outline-sharp background--outline" id="next">Suivant</button>
+    <button id="compilationexo1" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Compiler</button>
+</div>
+<script>
+    $("#next").click(function() {
+        if ($(".console").hasClass("neutre") || $(".console").hasClass("error")) {
+            return false;
+        } else {
+            document.location.href = "exo2.html";
+        }
+    });
+
+</script>
 
 
 </body>

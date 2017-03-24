@@ -1,6 +1,6 @@
 java:
-  image: tclavier/jersey-skeleton
+  image: ilearnagileproject2017/projetagile2017-groupe1
   ports:
-  - ip: A.X.Y.Z
+  - ip:  51.255.131.193
     container_port: 8080
     host_port: 80

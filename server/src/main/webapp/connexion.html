@@ -1,33 +1,29 @@
-<div class="container">
-    <div class="row">
-		<div class="span12">
-			<form class="form-horizontal" action='' method="POST">
-			  <fieldset>
-			    <div id="legend">
-			      <legend class="">Login</legend>
-			    </div>
-			    <div class="control-group">
-			      <!-- Username -->
-			      <label class="control-label"  for="username">Username</label>
-			      <div class="controls">
-			        <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
-			      </div>
-			    </div>
-			    <div class="control-group">
-			      <!-- Password-->
-			      <label class="control-label" for="password">Password</label>
-			      <div class="controls">
-			        <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-			      </div>
-			    </div>
-			    <div class="control-group">
-			      <!-- Button -->
-			      <div class="controls">
-			        <button class="btn btn-success">Login</button>
-			      </div>
-			    </div>
-			  </fieldset>
-			</form>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>TP1 - Introduction</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+
+	<form>
+		<div class='page-title'>
+			
+			<div class='form'>
+				<center><svg width="200" height="75">
+					<image xlink:href="logo.svg" src="logo.svg" width="200" height="50"/></image>
+				</svg></center>
+
+				<h2><input type='text' id='username' class="inputform"  placeholder="Nom d'utilisateur"></h2>
+				<h2><input type='password' id='password' class="inputform"  placeholder='Mot de passe'></h2>
+			</div>
 		</div>
-	</div>
-</div>
+	</form>
+	<center><button type="submit" class='button button--sharp-sm button--outline-sharp background--outline'>Connexion</button></center>
+
+</body>
+</html>
