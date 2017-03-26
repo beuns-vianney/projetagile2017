@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import org.gitlab4j.api.models.Commit;
 import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.RepositoryFile;
 
@@ -17,6 +18,9 @@ public class MethodeGitApi {
 	List<String> nomModule=new ArrayList<>();
 	boolean compilation;
 	String contenufichier;
+	List<Commit> lcommit;
+	String contenuLastCommit;
+	
 
 	public MethodeGitApi(String serveur,String Private_token){
 		this.serveur=serveur;
@@ -94,10 +98,7 @@ public class MethodeGitApi {
 					numeroproject=project.getId();
 				}
 			}
-		} catch (GitLabApiException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (GitLabApiException e) {}
 	}
 
 	public void push_fichier(GitLabApi glapi,String chemin,String filename,String contenu,String commit,Integer numeroRepo) throws GitLabApiException{
@@ -138,10 +139,6 @@ public class MethodeGitApi {
 		return nomModule;
 	}
 
-	public GitLabApi getGLAPI(){
-		return this.glapi;
-	}
-
 	public Integer getnumeroProject(){
 		return numeroproject;
 	}
@@ -153,12 +150,23 @@ public class MethodeGitApi {
 		String s=new String(decoded,"UTF-8"); 
 		contenufichier=s;
 	}
+	
+	public void recupCommits(GitLabApi glapi, Integer reposnumb) throws GitLabApiException{
+		List<Commit> lcommit=glapi.getCommitsApi().getCommits(reposnumb);
+		for (Commit commit : lcommit) {
+			System.out.println("Commit ");
+			System.out.println(commit.getMessage());
+		}
+		
+		contenuLastCommit=lcommit.get(0).getMessage();
+		System.out.println(contenuLastCommit);
+	}
 
 	public static void main(String[] args) throws GitLabApiException {
 		MethodeGitApi outil=new MethodeGitApi("https://git-iut.univ-lille1.fr", "Hq7godj-TazXi_HF_7Yo");
 
 		try{
-			outil.Construire_Project(outil.getGLAPI(), "I-Learn-Repository", "Programmation DUT-Info");
+			outil.Construire_Project(outil.glapi, "I-Learn-Repository", "Programmation DUT-Info");
 		}catch(Exception e){}
 
 		outil.recupNumeroProjet(outil.glapi,"I-Learn-Repository");
@@ -166,7 +174,7 @@ public class MethodeGitApi {
 		try{
 			outil.prepare_repos(outil.glapi, outil.getModulenom());
 		}catch (Exception e) {}
-
+		outil.recupCommits(outil.glapi, outil.numeroproject);
 		//outil.test(outil);
 	}
 
