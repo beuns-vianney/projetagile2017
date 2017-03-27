@@ -1,8 +1,5 @@
 package fr.iutinfo.skeleton.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -23,7 +20,7 @@ public class UtilisateurRessource {
 		MethodeGitApi mtgapi;
 		try{
 			mtgapi =new MethodeGitApi(compte,mdp);
-			mtgapi.getPrivate_token();
+			mtgapi.getPrivateToken();
 			
 		}catch(Exception e){}
 		

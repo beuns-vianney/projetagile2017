@@ -200,6 +200,10 @@ public class MethodeGitApi {
 		//outil.test(outil);
 	}
 
+	public String getPrivateToken() {
+		return Private_token;
+	}
+
 	/*public void test(MethodeGitApi outil){
 		try{
 			outil.push_fichier(outil.glapi, "S2/m2101/","HelloWorld.java","Ah bah mince c'est pas du IJAVA", "Commit: "+outil.nombredecommit+" Compilation: "+outil.compilation, outil.numeroproject);
