@@ -16,16 +16,16 @@ public class MethodeGitApi {
 
 	
 
-	int nombredecommit=1;
-	String serveur;
+	private int nombredecommit=1;
+	private String serveur;
 	private String Private_token;
-	GitLabApi glapi;
-	Integer numeroproject;
-	List<String> nomModule=new ArrayList<>();
+	private GitLabApi glapi;
+	private Integer numeroproject;
+	private List<String> nomModule=new ArrayList<>();
 	boolean compilation;
-	String contenufichier;
-	List<Commit> lcommit;
-	String contenuLastCommit;
+	private String contenufichier;
+	private List<Commit> lcommit;
+	private String contenuLastCommit;
 	
 
 	public MethodeGitApi(String username,String passwd){

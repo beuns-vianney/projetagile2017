@@ -1,4 +1,4 @@
-function compile(div_editor, div_button, div_response) {
+function compile(div_editor, div_button, div_response, div_tests) {
     var editor = ace.edit(div_editor);
     $(document).ready(function () {
 
@@ -17,7 +17,7 @@ function compile(div_editor, div_button, div_response) {
                 success: function (data, textStatus, jqXHR) {
                     if (data.retour == "Compilation Successful !") {
                         $("#" + div_response).attr('class', 'console , valid');
-                        exec(data.name, url, div_response);
+                        tests(data.name, url, div_tests);
                     } else {
                         /*    var tab = data.retour.split("</br>");
                             for(var i = 0; i<tab.length; i++){
