@@ -7,9 +7,12 @@ import java.sql.SQLException;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
@@ -19,6 +22,8 @@ import org.gitlab4j.api.MethodeGitApi;
 import org.gitlab4j.api.models.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import fr.iutinfo.skeleton.common.dto.UserDto;
 
 @Path("/utilisateur")
 @Produces(MediaType.APPLICATION_JSON)
@@ -32,12 +37,26 @@ public class UtilisateurRessource {
         if (!tableExist("users")) {
             logger.debug("Create table users");
             dao.createUserTable();
-            dao.createTpTable();
-            dao.createProgresTable();
-            dao.insert(new User("belsa","bels","alexis",""));
+            dao.insertUser(new User("belsa","bels","alexis",""));
+        }
+        if (!tableExist("users")) {
+        dao.createTpTable();
+        dao.insertTp(new Tp(0,"m0000","tp1","./"));
+        }
+        if (!tableExist("progres")) {
+        dao.createProgresTable();
         }
     }
 
+	 @GET
+	    @Path("/{login}")
+	    public UserDto getUser(@PathParam("login") String login) {
+	        User user = dao.findByLogin(login);
+	        if (user == null) {
+	            throw new WebApplicationException(404);
+	        }
+	        return user.convertToDto();
+	    }
 	
 	@POST
 	@Path("/connexion")

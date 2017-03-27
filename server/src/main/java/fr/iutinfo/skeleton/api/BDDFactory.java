@@ -21,7 +21,7 @@ public class BDDFactory {
             ds.setUrl("jdbc:sqlite:" + System.getProperty("user.dir") + System.getProperty("file.separator") + "base_donne.db");
             dbi = new DBI(ds);
             logger.debug("user.dir : " + System.getProperty("user.dir"));
-          //  logger.debug("java.io.tmpdir : " + System.getProperty("java.io.tmpdir"));
+            logger.debug("java.io.tmpdir : " + System.getProperty("java.io.tmpdir"));
         }
         return dbi;
     }
