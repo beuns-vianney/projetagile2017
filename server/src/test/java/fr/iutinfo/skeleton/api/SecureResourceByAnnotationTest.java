@@ -13,7 +13,7 @@ import static javax.ws.rs.core.Response.Status.FORBIDDEN;
 import static org.junit.Assert.assertEquals;
 
 public class SecureResourceByAnnotationTest extends JerseyTest {
-    private Helper h;
+  /*  private Helper h;
     private String path = "/secure/byannotation";
 
     @Override
@@ -41,5 +41,5 @@ public class SecureResourceByAnnotationTest extends JerseyTest {
         String authorization = "Basic " + Base64.encodeAsString("tclavier:pasdemotdepasse");
         int status = target(path).request().header(AUTHORIZATION, authorization).get().getStatus();
         assertEquals(FORBIDDEN.getStatusCode(), status);
-    }
+    }*/
 }
