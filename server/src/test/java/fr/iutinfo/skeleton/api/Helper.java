@@ -8,7 +8,7 @@ import javax.ws.rs.core.GenericType;
 import java.util.List;
 
 public class Helper {
- /*  private final static Logger logger = LoggerFactory.getLogger(Helper.class);
+   private final static Logger logger = LoggerFactory.getLogger(Helper.class);
     private static final UserDao dao = BDDFactory.getDbi().open(UserDao.class);
     static GenericType<List<UserDto>> listUserResponseType = new GenericType<List<UserDto>>() {
     };
@@ -16,8 +16,12 @@ public class Helper {
     public static void initDb() {
         dao.dropUserTable();
         dao.createUserTable();
+        dao.dropTpTable();
+        dao.createTpTable();
+        dao.dropProgresTable();
+        dao.createProgresTable();
     }
-
+/*
     static User createUserWithName(String name) {
         User user = new User(0, name);
         return createUser(user);
@@ -32,8 +36,8 @@ public class Helper {
         User user = new User(0, name);
         user.setEmail(email);
         return createUser(user);
-    }
-
+    }*/
+/*
     public static User createUserWithPassword(String name, String passwd, String salt) {
         User user = new User(0, name);
         user.setSalt(salt);
