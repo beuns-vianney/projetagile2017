@@ -1,4 +1,4 @@
-function compile(div_editor, div_button, div_response, div_tests) {
+function compile(div_editor, div_button, div_response, div_tests, next_button) {
     var editor = ace.edit(div_editor);
     $(document).ready(function () {
 
@@ -16,7 +16,7 @@ function compile(div_editor, div_button, div_response, div_tests) {
                 success: function (data, textStatus, jqXHR) {
                     if (data.retour == "Compilation Successful !") {
                         $("#" + div_response).attr('class', 'console , valid');
-                        tests(data.name, url, div_tests);
+                        tests(data.name, url, div_response, div_tests, next_button);
                     } else {
                         /*    var tab = data.retour.split("</br>");
                             for(var i = 0; i<tab.length; i++){
@@ -52,7 +52,7 @@ function exec(name, url, div_reponse){
     });
 }
 
-function tests(name, url, div_reponse){
+function tests(name, url, div_reponse, div_tests, next_button){
     $.ajax({
        type: 'GET',
         url: url+"/tests",
@@ -62,8 +62,11 @@ function tests(name, url, div_reponse){
                 console.log(data.retour[i]);
                 $('#' + div_reponse).text(data.retour[i]);
             }
-            if(testOK($('#' + div_reponse).text())){
-                console.log("good");
+            if(!testOK($('#' + div_reponse).text())){
+               $('#' + div_reponse).attr("class", 'console , error')
+            }
+            if(testOK($('#' + div_reponse).text()) && testOK($('#' + div_tests).text())){
+                $('#'+next_button).attr("class", "button btn-action");
             }
             
        },

@@ -262,21 +262,14 @@
 				}
 			});
 
-			if ( serv1show === true )  {
-				compile("editor", "compilationexo1", "serv1", "console");
-				serv = serv1;
-			}else{
-				compile("editor", "compilationexo1", "serv2", "console");
-				serv = serv2
-			}
 
 			$('.progress-button button').click(function(){
                 var serv;
 						if ( serv1show === true )  {
-				compile("editor", "compilationexo1", "serv1", "console");
+				compile("editor", "compilationexo1", "serv1", "serv2", "suivant");
 				serv = serv1;
 			}else{
-				compile("editor", "compilationexo1", "serv2", "console");
+				compile("editor", "compilationexo1", "serv2", "serv1", "suivant");
 				serv = serv2
 			}
 			
