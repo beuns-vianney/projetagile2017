@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/user")
+@Path("/utilisateur")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UtilisateurRessource {
@@ -20,9 +20,11 @@ public class UtilisateurRessource {
 		MethodeGitApi mtgapi;
 		try{
 			mtgapi =new MethodeGitApi(compte,mdp);
-			mtgapi.getPrivateToken();
 			
-		}catch(Exception e){}
+			user = RequeteBDD.usersByToken(mtgapi.getPrivate_token());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 		
 		
 		return user;
