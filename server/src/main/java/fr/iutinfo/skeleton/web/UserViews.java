@@ -29,7 +29,7 @@ public class UserViews {
     public User getDetail(@PathParam("id") String id) {
         User user = null;
         if ("-1".equals(id)) {
-            user = User.getAnonymousUser();
+            //user = User.getAnonymousUser();
         } else {
             user = dao.findById(Integer.parseInt(id));
         }

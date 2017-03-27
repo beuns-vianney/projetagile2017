@@ -38,14 +38,14 @@ public class SecureViews {
         User currentUser = (User) context.getUserPrincipal();
         User oldUser = dao.findByName(oldLogin);
         if (oldUser == null) {
-            oldUser = User.getAnonymousUser();
+         //   oldUser = User.getAnonymousUser();
         }
         logger.debug("User - current : " + currentUser.toString() + ", old : " + oldUser.toString());
-        if (currentUser.getId() == oldUser.getId()) {
-            requestLoginForm();
-        } else {
-            setCookieAndRedirectToUserDetail(currentUser, uriInfo);
-        }
+      //  if (currentUser.getId() == oldUser.getId()) {
+       //     requestLoginForm();
+       // } else {
+      //      setCookieAndRedirectToUserDetail(currentUser, uriInfo);
+     //   }
         return null;
     }
 
@@ -57,13 +57,13 @@ public class SecureViews {
     }
 
     private void setCookieAndRedirectToUserDetail(User currentUser, UriInfo uriInfo) throws URISyntaxException {
-        URI location = UriBuilder.fromResource(UserViews.class).path("/" + currentUser.getId()).build();
-        logger.debug("Redirect to " + location);
-        throw new WebApplicationException(Response
-                .temporaryRedirect(location)
-                .cookie(new NewCookie("user", currentUser.getName()))
-                .build()
-        );
+    //   URI location = UriBuilder.fromResource(UserViews.class).path("/" + currentUser.getId()).build();
+      //  logger.debug("Redirect to " + location);
+      //  throw new WebApplicationException(Response
+     //           .temporaryRedirect(location)
+     //           .cookie(new NewCookie("user", currentUser.getName()))
+     //           .build()
+      //  );
     }
 }
 

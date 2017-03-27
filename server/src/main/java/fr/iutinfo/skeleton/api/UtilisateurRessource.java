@@ -15,6 +15,7 @@ import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
+import org.gitlab4j.api.MethodeGitApi;
 import org.gitlab4j.api.models.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +57,7 @@ public class UtilisateurRessource {
 //				if (user == null) {
 //					RequeteBDD.insert(session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], 1, 1, session.getPrivateToken());
 //				}
+				System.out.println("Session : "+session.getName());
 				System.out.println("TOKEN: "+mtgapi.getPrivateToken());
 				cookie = new NewCookie("ILEARN_TOKEN", session.getPrivateToken());
 				

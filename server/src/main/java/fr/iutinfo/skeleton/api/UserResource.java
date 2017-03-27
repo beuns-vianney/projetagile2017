@@ -42,9 +42,9 @@ public class UserResource {
     public UserDto createUser(UserDto dto) {
         User user = new User();
         user.initFromDto(dto);
-        user.resetPasswordHash();
-        int id = dao.insert(user);
-        dto.setId(id);
+      // user.resetPasswordHash();
+      //  int id = dao.insert(user);
+      //  dto.setId(id);
         return dto;
     }
 
