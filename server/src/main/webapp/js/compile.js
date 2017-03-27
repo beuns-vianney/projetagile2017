@@ -2,7 +2,6 @@ function compile(div_editor, div_button, div_response, div_tests) {
     var editor = ace.edit(div_editor);
     $(document).ready(function () {
 
-        $("#" + div_button).click(function () {
             console.log(editor.getValue());
             var url = "../v1/exercice";
             console.log("postUserGeneric " + url)
@@ -31,7 +30,6 @@ function compile(div_editor, div_button, div_response, div_tests) {
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log('postUser error: ' + textStatus);
                 }
-            });
         })
 
     });
@@ -64,9 +62,21 @@ function tests(name, url, div_reponse){
                 console.log(data.retour[i]);
                 $('#' + div_reponse).text(data.retour[i]);
             }
+            if(testOK($('#' + div_reponse).text())){
+                console.log("good");
+            }
+            
        },
        error : function(jqXHR, textStatus, errorThrown) {
        			alert('error: ' + textStatus);
        		}        
     });
+}
+
+function testOK(tests){
+    var tab = tests.split('%');
+    var pourcentage = tab[0].substring(tab[0].length - 3);
+    if(pourcentage == "100"){
+        return true;
+    }else return false;
 }
