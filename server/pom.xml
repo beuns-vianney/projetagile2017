@@ -109,7 +109,9 @@
         <dependency>
             <groupId>org.gitlab4j</groupId>
             <artifactId>gitlab4j-api</artifactId>
-            <version>4.0.9-SNAPSHOT</version>
+            <version>4.0.7-SNAPSHOT</version>
         </dependency>
+        
+       
     </dependencies>
 </project>
