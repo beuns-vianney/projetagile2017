@@ -223,8 +223,6 @@
                 }
                 var data = {
                     labels: hey,
-                    // yLabels: ["25", "50", "75", "100"],
-
                     datasets: [{
                         responsive: true,
                         label: "Evolution du taux de completion sur l'ensemble des TP",
@@ -249,7 +247,6 @@
                         spanGaps: true,
                     }]
                 };
-                //     labels: ["January", "February", "March", "April", "May", "June", "July"], [65, 59, 80, 81, 56, 55, 40]
                 var ctx = document.getElementById("myChart").getContext("2d");
                 ctx.canvas.width = $("#graphique").width();
                 ctx.canvas.height = $("#graphique").width();
@@ -257,8 +254,6 @@
                     type: 'line',
                     data: data,
                     options: {
-                        //maintainAspectRatio: true,
-                        // fullwidth: true,
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -273,119 +268,92 @@
             }
 
         </script>
-        <div id="graphique2" style="display:inline-block; width: 50%; height=auto">
-            <canvas id="Chart1" height="2000" width- "300"></canvas>
-            <script>
-                var jsonallgroupalltp = {
-                    "tp1": ["50", "48", "60", "75"],
-                    "tp2": ["25", "30", "35", "33"],
-                    "tp3": ["30", "23", "43", "36"]
-                }
-                AllGroupAllTP(jsonallgroupalltp);
+    </div>
+    <div id="graphique2" style="display:inline-block; width: 50%; height=auto">
+        <canvas id="Chart1" height="480" width="480"></canvas>
+        <script>
+            var jsonallgroupalltp = {
+                "tp1": ["50", "48", "60", "75"],
+                "tp2": ["25", "30", "35", "33"],
+                "tp3": ["30", "23", "43", "36"]
+            }
+            AllGroupAllTP(jsonallgroupalltp);
 
-                function AllGroupAllTP(jsonallgroupalltp) {
-                    var hey = Object.keys(jsonallgroupalltp);
-                    console.log(jsonallgroupalltp);
+            function AllGroupAllTP(jsonallgroupalltp) {
+                var hey = Object.keys(jsonallgroupalltp);
+                console.log(jsonallgroupalltp);
+                var ho = [];
+
+
+                lineChartData = {}; //declare an object
+                lineChartData.labels = hey; //add 'labels' element to object (X axis)
+                lineChartData.datasets = []; //add 'datasets' array element to object
+
+                for (var line = 0; line < hey.length; line++) {
                     var ho = [];
+                    for (var i = 0; i < hey.length; i++) {
+                        ho.push((jsonallgroupalltp[hey[line]][i]));
 
-                    /*  var data = {
-                          labels: hey,
-                          datasets: [{
-                              responsive: true,
-                              label: "Evolution du taux de completion sur l'ensemble des TP",
-                              fill: false,
-                              lineTension: 0.1,
-                              backgroundColor: "rgba(224, 6, 82, 0.56)",
-                              borderColor: "rgba(224, 6, 82, 0.56)",
-                              borderCapStyle: 'butt',
-                              borderDash: [],
-                              borderDashOffset: 0.0,
-                              borderJoinStyle: 'round',
-                              pointBorderColor: "rgb(224, 6, 82)",
-                              pointBackgroundColor: "#fff",
-                              pointBorderWidth: 1,
-                              pointHoverRadius: 5,
-                              pointHoverBackgroundColor: "rgb(224, 6, 82)",
-                              pointHoverBorderColor: "rgba(220,220,220,1)",
-                              pointHoverBorderWidth: 2,
-                              pointRadius: 1,
-                              pointHitRadius: 10,
-                              data: ho,
-                              spanGaps: true,
-                          }]
-                      };
-                      //     labels: ["January", "February", "March", "April", "May", "June", "July"], [65, 59, 80, 81, 56, 55, 40]
-                      var ctx = document.getElementById("myChart").getContext("2d");
-                      ctx.canvas.width = $("#graphique").width();
-                      ctx.canvas.height = $("#graphique").width();
-                      var myLineChart = new Chart(ctx, {
-                          type: 'line',
-                          data: data,
-                          options: {
-                              //maintainAspectRatio: true,
-                              // fullwidth: true,
-                              scales: {
-                                  yAxes: [{
-                                      ticks: {
-                                          min: 0,
-                                          max: 100,
-                                          beginAtZero: true,
-                                      }
-                                  }]
-                              },
-                          }
-                      });*/
-                    lineChartData = {}; //declare an object
-                    lineChartData.labels = []; //add 'labels' element to object (X axis)
-                    lineChartData.datasets = []; //add 'datasets' array element to object
-
-                    for (var line = 0; line < hey.length; line++) {
-                        var ho = [];
-                        for (var i = 0; i < hey.length; i++) {
-                            ho.push((jsonallgroupalltp[hey[line]][i]));
-                        }
-                        console.log(ho);
-                        y = [];
-                        lineChartData.datasets.push({}); //create a new line dataset
-                        dataset = lineChartData.datasets[line]
-                        dataset.fillColor = "rgba(0,0,0,0)";
-                        dataset.strokeColor = "rgba(200,200,200,1)";
-                        dataset.data = []; //contains the 'Y; axis data
-                        dataset.fill = false;
-                        dataset.lineTension = 0.1;
-                        dataset.backgroundColor = "rgba(224, 6, 82, 0.56)";
-                        dataset.borderColor = "rgba(224, 6, 82, 0.56)";
-                        dataset.borderCapStyle = 'butt';
-                        dataset.borderDash = [];
-                        dataset.borderDashOffset = 0.0;
-                        dataset.borderJoinStyle = 'round';
-                        dataset.pointBorderColor = "rgb(224, 6, 82)";
-                        dataset.pointBackgroundColor = "#fff";
-                        dataset.pointBorderWidth = 1;
-                        dataset.pointHoverRadius = 5;
-                        dataset.pointHoverBackgroundColor = "rgb(224, 6, 82)";
-                        dataset.pointHoverBorderColor = "rgba(220,220,220,1)";
-                        dataset.pointHoverBorderWidth = 2;
-                        dataset.pointRadius = 1;
-                        dataset.pointHitRadius = 10;
-                        for (var x = 0; x < ho.length; x++) {
-                            y.push(ho[x]); //push some data aka generate 4 distinct separate lines
-                            //  if (line === 0)
-                            //     lineChartData.labels.push(x); //adds x axis labels
-                        } //for x
-
-                        lineChartData.datasets[line].data = y; //send new line data to dataset
-                    } //for line
-
-                    ctx = document.getElementById("Chart1").getContext("2d");
-                    myLineChart = new Chart(ctx, {
-                        type: "line",
-                        data: lineChartData
-                    });
+                    }
+                    console.log(ho);
+                    y = [];
+                    lineChartData.datasets.push({}); //create a new line dataset
+                    dataset = lineChartData.datasets[line]
+                    dataset.label = "Groupe " + (line + 1);
+                    dataset.borderColor = color = getRandomColor();
+                    dataset.fillColor = "rgba(0,0,0,0)";
+                    dataset.strokeColor = "rgba(200,200,200,1)";
+                    dataset.data = []; //contains the 'Y; axis data
+                    dataset.fill = false;
+                    dataset.lineTension = 0.1;
+                    dataset.backgroundColor = color;
+                    dataset.borderCapStyle = 'butt';
+                    dataset.borderDash = [];
+                    dataset.borderDashOffset = 0.0;
+                    dataset.borderJoinStyle = 'round';
+                    dataset.pointBorderColor = color;
+                    dataset.pointBackgroundColor = "#fff";
+                    dataset.pointBorderWidth = 1;
+                    dataset.pointHoverRadius = 5;
+                    dataset.pointHoverBackgroundColor = color;
+                    dataset.pointHoverBorderColor = "rgba(220,220,220,1)";
+                    dataset.pointHoverBorderWidth = 2;
+                    dataset.pointRadius = 1;
+                    dataset.pointHitRadius = 10;
+                    for (var x = 0; x < ho.length; x++) {
+                        y.push(ho[x]);
+                    }
+                    lineChartData.datasets[line].data = y;
                 }
 
-            </script>
-        </div>
+                ctx = document.getElementById("Chart1").getContext("2d");
+                myLineChart = new Chart(ctx, {
+                    type: "line",
+                    data: lineChartData,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 100,
+                                    beginAtZero: true,
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+            }
+
+        </script>
     </div>
 </body>
 
