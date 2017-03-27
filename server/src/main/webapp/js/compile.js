@@ -2,7 +2,6 @@ function compile(div_editor, div_button, div_response, div_tests) {
     var editor = ace.edit(div_editor);
     $(document).ready(function () {
 
-        $("#" + div_button).click(function () {
             console.log(editor.getValue());
             var url = "../v1/exercice";
             console.log("postUserGeneric " + url)
@@ -31,7 +30,6 @@ function compile(div_editor, div_button, div_response, div_tests) {
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log('postUser error: ' + textStatus);
                 }
-            });
         })
 
     });
