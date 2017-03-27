@@ -84,19 +84,24 @@ public class RequeteBDD {
 		return users;
 	}
 	
-	public static boolean insert(String nom, String prenom, int groupe, int rang) {
-		String sql = "INSERT INTO users(nom, prenom, groupe, rang) VALUES(?, ?, ?, ?)";
+	public static boolean insert(String nom, String prenom, int groupe, int rang, String token) {
+		String sql = "INSERT INTO users(nom, prenom, groupe, rang, token) VALUES(?, ?, ?, ?, ?)";
 
 		try (PreparedStatement pstmt = BDD.getInstance().prepareStatement(sql)) {
 			pstmt.setString(1, nom);
 			pstmt.setString(2, prenom);
 			pstmt.setInt(3, groupe);
 			pstmt.setInt(4, rang);
+			pstmt.setString(5, token);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
 		return true;
+	}
+	
+	public static void main(String[] args) {
+		createBDD();
 	}
 }
