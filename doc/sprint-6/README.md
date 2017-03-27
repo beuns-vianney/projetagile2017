@@ -19,14 +19,15 @@ Nom du scrum master du sprint : Alexandre Halleux
 -Gestion des erreurs 
 
 ### Qu'avons nous observé ? 
--Ca marche
+-Tout nos essais sur ce sprint ont fonctionnée
 
 # Quelle décision prenons nous suite à cette expérience ? 
--On continue sur cette lancé
+-Toujours l'étude de gitlab
 
 ### Qu'allons nous tester durant les 2 prochaines heures ? 
 -API gitlab
 -Base de données
+-Modification html suite à une discution avec le client
 
 ### À quoi verra-t-on que celà à fonctionné ?
 -Le test nous redirigeras sur google si j'ai bien obtenu un token
