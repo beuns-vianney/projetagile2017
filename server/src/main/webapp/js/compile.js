@@ -17,7 +17,7 @@ function compile(div_editor, div_button, div_response) {
                 success: function (data, textStatus, jqXHR) {
                     if (data.retour == "Compilation Successful !") {
                         $("#" + div_response).attr('class', 'console , valid');
-                        exec(data.name, url);
+                        exec(data.name, url, div_response);
                     } else {
                         /*    var tab = data.retour.split("</br>");
                             for(var i = 0; i<tab.length; i++){
@@ -37,13 +37,16 @@ function compile(div_editor, div_button, div_response) {
     });
 }
 
-function exec(name, url){
+function exec(name, url, div_reponse){
     $.ajax({
        type: 'GET',
         url: url,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            for(var i = 0; i<data.retour.length; i++){
+                console.log(data.retour[i]);
+                $('#' + div_reponse).text(data.retour[i]);
+            }
        },
        error : function(jqXHR, textStatus, errorThrown) {
        			alert('error: ' + textStatus);

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>TP1 - Exercice n°1</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/compile.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/ResizeSensor.js"></script>
+    <script src="js/ElementQueries.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+</head>
+
+<body>
+
+    <div class='breadcrumbs'>
+        <div class='inner'>
+            <ul class='cf'>
+                <li><a href="introduction.html"><span>0</span><span>Introduction</span></a></li>
+                <li><a class='active'><span>1</span><span>Exercice 1</span></a></li>
+                <li><a href="exo2.html" class='passif'><span>2</span><span>Exercice 2</span></a></li>
+                <li><a href="exo3.html" class='passif'><span>3</span><span>Exercice 3</span></a></li>
+                <li><a href="fin.html" class='passif'><span>4</span><span>Terminé</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-title">
+        <h1> M1102 - TP1</h1>
+        <h2>Notion de séquence d'instruction et d'alternative</h2>
+    </div>
+
+    <div class="exercice">
+        <h1>Exercice 1: suffixe d'un mot</h1>
+        <div class="paragraph">
+            On souhaite concevoir une fonction qui calcule le suffixe d'un mot donné, c'est-à-dire qui retourne les n dernières lettres de ce mot. Voici la signature de la fonction que vous devez écrire: <code>String suffixe(String mot, int nbLettres)</code>.
+        </div>
+
+        <h2>Q1: suffixe v1</h2>
+
+        <div id="wrap-editor" class="wrap-editor">
+            <div id="editor" class="editor"> </div>
+        </div>
+        <script>
+            var editor = ace.edit("editor");
+            editor.getSession().setMode("ace/mode/java");
+            editor.setTheme("ace/theme/xcode");
+            $(document).ready(function() {
+                new ResizeSensor(jQuery('#wrap-editor'), function() {
+                    $("#editor").height($("#wrap-editor").height() - 12);
+                    $("#editor").width($("#wrap-editor").width() - 12);
+                    editor.resize(true);
+                });
+            });
+
+        </script>
+
+        <div class="console , neutre">
+            <b>Serv :</b> En attente de compilation...
+        </div>
+
+        <div class="paragraph">
+            Donnez une première version de <code> suffixe</code> en supposant que l'indice donné par l'utilisateur est valide.
+        </div>
+
+        <h2>Q2: suffixe v2</h2>
+
+        <div id="wrap-editor" class="wrap-editor">
+            <div id="editor2" class="editor"> </div>
+        </div>
+        <script>
+            var editor2 = ace.edit("editor2");
+            editor2.getSession().setMode("ace/mode/java");
+            editor2.setTheme("ace/theme/xcode");
+            $(document).ready(function() {
+                new ResizeSensor(jQuery('#wrap-editor'), function() {
+                    $("#editor2").height($("#wrap-editor").height() - 12);
+                    $("#editor2").width($("#wrap-editor").width() - 12);
+                    editor2.resize(true);
+                });
+            });
+            $(".passif").click(function() {
+                if ($(".console").hasClass("neutre") || $(".console").hasClass("error")) {
+                    return false;
+                }
+            });
+
+            compile("editor2", "compilationexo1");
+
+        </script>
+
+        <div class="console , neutre">
+            <b>Serv :</b> En attente de compilation...
+        </div>
+
+        <div class="paragraph">
+            Modifiez votre fonction afin qu'elle retourne la chaîne <code>"ERREUR"</code> si l'indice est invalide (négatif ou trop grand par rapport à la longueur du mot).
+        </div>
+    </div>
+
+    <div class="spacebutton">
+        <button onclick="location.href='introduction.html'" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Précédent</button>
+        <button type="button" class="button button--sharp-sm button--outline-sharp background--outline" id="next">Suivant</button>
+        <button id="compilationexo1" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Compiler</button>
+    </div>
+    <script>
+        $("#next").click(function() {
+            if ($(".console").hasClass("neutre") || $(".console").hasClass("error")) {
+                return false;
+            } else {
+                document.location.href = "exo2.html";
+            }
+        });
+
+    </script>
+
+    <div id="tableau">
+        <script>
+            var text = [{
+                    "firstName": "John",
+                    "lastName": "Doe"
+                },
+                {
+                    "firstName": "Anna",
+                    "lastName": "Smith"
+                }, {
+                    "firstName": "Peter",
+                    "lastName": "Jones"
+                }
+            ];
+            /*
+                        //var tab = jQuery.parseJSON(text);
+                        document.write("<table><th>Nom</th><th>Prenom</th><th>Compilation</th><th>Temps d'inactivité</th><th>Tests</th>");
+                        var tty = Object.keys(text);
+                        console.log(tty);
+                        var lg = "";
+                        var hey = Object.keys(text.[tty[0]][1]);
+
+                        /*for (ty in text.employees) {
+                            hey.push(ty);
+                        }
+                        console.log(hey);
+                        for (var i = 0; i < text.employees.length; i++) {
+                            lg += "<tr>";
+                            for (var j = 0; j < hey.length; j++) {
+                                console.log(text.employees[i][hey[j]]);
+                                var t = text.employees[i][hey[j]];
+                                var ontest = text.employees[t];
+                                lg += "<td>" + t + "</td>";
+                            }
+                            lg += "</tr>";
+                        }
+                        lg += "</table>";
+                        console.log(lg);
+                        $("#tableau").append(lg);
+                        // console.log(tab.employees.length);
+            */
+            function jsontoTable(text) {
+                var col = [];
+                for (var i = 0; i < text.length; i++) {
+                    for (var key in text[i]) {
+                        if (col.indexOf(key) === -1) {
+                            col.push(key);
+                        }
+                    }
+                }
+
+                var table = document.createElement("table");
+
+
+                var tr = table.insertRow(-1); // TABLE ROW.
+
+                for (var i = 0; i < col.length; i++) {
+                    var th = document.createElement("th"); // TABLE HEADER.
+                    th.innerHTML = col[i];
+                    tr.appendChild(th);
+                }
+
+                for (var i = 0; i < text.length; i++) {
+
+                    tr = table.insertRow(-1);
+
+                    for (var j = 0; j < col.length; j++) {
+                        var tabCell = tr.insertCell(-1);
+                        tabCell.innerHTML = text[i][col[j]];
+                    }
+                }
+
+                var divContainer = document.getElementById("tableau");
+                divContainer.innerHTML = "";
+                divContainer.appendChild(table);
+            }
+
+        </script>
+    </div>
+    <div id="graphique" style="display:inline-block; width: 50%; height=auto">
+        <canvas id="myChart" height="20"></canvas>
+        <script>
+            var jsontest = {
+                "1": "2",
+                "2": "1",
+                "3": "3",
+                "4": "3",
+                "5": "1",
+                "6": "3",
+                "7": "1",
+                "8": "4",
+                "9": "2",
+                "10": "3"
+
+            };
+            OnestudentOneTP(jsontest);
+
+            function OnestudentOneTP(jsontest) {
+                var hey = Object.keys(jsontest);
+                var ho = [];
+                for (var i = 0; i < hey.length; i++) {
+                    ho.push((jsontest[hey[i]] * 25));
+                }
+                var data = {
+                    labels: hey,
+                    datasets: [{
+                        responsive: true,
+                        label: "Evolution du taux de completion sur l'ensemble des TP",
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(224, 6, 82, 0.56)",
+                        borderColor: "rgba(224, 6, 82, 0.56)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'round',
+                        pointBorderColor: "rgb(224, 6, 82)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgb(224, 6, 82)",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: ho,
+                        spanGaps: true,
+                    }]
+                };
+                var ctx = document.getElementById("myChart").getContext("2d");
+                ctx.canvas.width = $("#graphique").width();
+                ctx.canvas.height = $("#graphique").width();
+                var myLineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 100,
+                                    beginAtZero: true,
+                                }
+                            }]
+                        },
+                    }
+                });
+            }
+
+        </script>
+    </div>
+    <div id="graphique2" style="display:inline-block; width: 50%; height=auto">
+        <canvas id="Chart1" height="480" width="480"></canvas>
+        <script>
+            var jsonallgroupalltp = {
+                "tp1": ["50", "48", "60", "75"],
+                "tp2": ["25", "30", "35", "33"],
+                "tp3": ["30", "23", "43", "36"]
+            }
+            AllGroupAllTP(jsonallgroupalltp);
+
+            function AllGroupAllTP(jsonallgroupalltp) {
+                var hey = Object.keys(jsonallgroupalltp);
+                console.log(jsonallgroupalltp);
+                var ho = [];
+
+
+                lineChartData = {}; //declare an object
+                lineChartData.labels = hey; //add 'labels' element to object (X axis)
+                lineChartData.datasets = []; //add 'datasets' array element to object
+
+                for (var line = 0; line < hey.length; line++) {
+                    var ho = [];
+                    for (var i = 0; i < hey.length; i++) {
+                        ho.push((jsonallgroupalltp[hey[line]][i]));
+
+                    }
+                    console.log(ho);
+                    y = [];
+                    lineChartData.datasets.push({}); //create a new line dataset
+                    dataset = lineChartData.datasets[line]
+                    dataset.label = "Groupe " + (line + 1);
+                    dataset.borderColor = color = getRandomColor();
+                    dataset.fillColor = "rgba(0,0,0,0)";
+                    dataset.strokeColor = "rgba(200,200,200,1)";
+                    dataset.data = []; //contains the 'Y; axis data
+                    dataset.fill = false;
+                    dataset.lineTension = 0.1;
+                    dataset.backgroundColor = color;
+                    dataset.borderCapStyle = 'butt';
+                    dataset.borderDash = [];
+                    dataset.borderDashOffset = 0.0;
+                    dataset.borderJoinStyle = 'round';
+                    dataset.pointBorderColor = color;
+                    dataset.pointBackgroundColor = "#fff";
+                    dataset.pointBorderWidth = 1;
+                    dataset.pointHoverRadius = 5;
+                    dataset.pointHoverBackgroundColor = color;
+                    dataset.pointHoverBorderColor = "rgba(220,220,220,1)";
+                    dataset.pointHoverBorderWidth = 2;
+                    dataset.pointRadius = 1;
+                    dataset.pointHitRadius = 10;
+                    for (var x = 0; x < ho.length; x++) {
+                        y.push(ho[x]);
+                    }
+                    lineChartData.datasets[line].data = y;
+                }
+
+                ctx = document.getElementById("Chart1").getContext("2d");
+                myLineChart = new Chart(ctx, {
+                    type: "line",
+                    data: lineChartData,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 100,
+                                    beginAtZero: true,
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+            }
+
+        </script>
+    </div>
+</body>
+
+</html>
