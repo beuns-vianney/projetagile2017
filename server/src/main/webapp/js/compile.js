@@ -1,8 +1,9 @@
-function compile(div_editor, div_button, div_response, div_tests) {
+var oolean;
+function compile(div_editor, div_button, div_response, div_tests, next_button) {
     var editor = ace.edit(div_editor);
+
     $(document).ready(function () {
 
-        $("#" + div_button).click(function () {
             console.log(editor.getValue());
             var url = "../v1/exercice";
             console.log("postUserGeneric " + url)
@@ -15,26 +16,28 @@ function compile(div_editor, div_button, div_response, div_tests) {
                     "code": editor.getValue()
                 }),
                 success: function (data, textStatus, jqXHR) {
+                    
                     if (data.retour == "Compilation Successful !") {
                         $("#" + div_response).attr('class', 'console , valid');
-                        tests(data.name, url, div_tests);
+                        tests(data.name, url, div_response, div_tests, next_button);
+                        $("#" + div_response).text(data.retour);
+                        
+                        oolean = true;
                     } else {
-                        /*    var tab = data.retour.split("</br>");
-                            for(var i = 0; i<tab.length; i++){
-                                $("#" + div_response).text( tab[i] );
-                            }*/
                         $("#" + div_response).attr('class', 'console , error');
+                        $("#" + div_response).text(data.retour);
+                        
+                        oolean = false;
                     }
-                    $("#" + div_response).text(data.retour);
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log('postUser error: ' + textStatus);
+                    oolean = false;
                 }
-            });
         })
 
     });
+    return oolean;
 }
 
 function exec(name, url, div_reponse){
@@ -54,7 +57,7 @@ function exec(name, url, div_reponse){
     });
 }
 
-function tests(name, url, div_reponse){
+function tests(name, url, div_reponse, div_tests, next_button){
     $.ajax({
        type: 'GET',
         url: url+"/tests",
@@ -64,9 +67,24 @@ function tests(name, url, div_reponse){
                 console.log(data.retour[i]);
                 $('#' + div_reponse).text(data.retour[i]);
             }
+            if(!testOK($('#' + div_reponse).text())){
+               $('#' + div_reponse).attr("class", 'console , error')
+            }
+            if(testOK($('#' + div_reponse).text()) && testOK($('#' + div_tests).text())){
+                $('#'+next_button).attr("class", "button btn-action");
+            }
+            
        },
        error : function(jqXHR, textStatus, errorThrown) {
        			alert('error: ' + textStatus);
        		}        
     });
+}
+
+function testOK(tests){
+    var tab = tests.split('%');
+    var pourcentage = tab[0].substring(tab[0].length - 3);
+    if(pourcentage == "100"){
+        return true;
+    }else return false;
 }
