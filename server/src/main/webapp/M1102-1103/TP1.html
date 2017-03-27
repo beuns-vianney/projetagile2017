@@ -262,19 +262,19 @@
 				}
 			});
 
-				if ( serv1show === true )  {
-					compile("editor", "compilationexo1", "serv1", "console");
-				}else{
-					compile("editor", "compilationexo1", "serv2", "console");
-				}
 
 			$('.progress-button button').click(function(){
-
+                var serv;
+			if ( serv1show == true )  {
+				serv = compile("editor", "compilationexo1", "serv1", "serv2", "suivant");
+			}else{
+				serv = compile("editor", "compilationexo1", "serv2", "serv1", "suivant");
+			}
 			
 
 				$('.progress-button').addClass('loading');
 				draw('.progress-circle path');
-				if( $(".console").hasClass("valid") ){
+				if(serv == true){
 					setTimeout(toggleSuccess, 1000);
 				} else {
 					setTimeout(toggleError, 1000);

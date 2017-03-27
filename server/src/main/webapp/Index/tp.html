@@ -1,84 +1,161 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-	<title>iLearn - Accueil</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/style2.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>iLearn - Accueil</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body class="Main">
 
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">
-				<span class="logo"><img src="../img/logo.svg" width="90%"></span>
-			</a>
-		</div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <span class="logo"><img src="../img/logo.svg" width="90%"></span>
+            </a>
+        </div>
 
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="navlink"><a href="index.html">Accueil</a></li>
-				<li class="navlink, active"><a href="tp.html">Mes TP</a></li>
-				<li class="linkout"><a href="connexion.html">Se déconnecter</a></li>
-			</ul>
-		</div>
-	</nav>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navlink"><a href="index.html">Accueil</a></li>
+                <li class="navlink, active"><a href="tp.html">Mes TP</a></li>
+                <li class="linkout"><a href="connexion.html">Se déconnecter</a></li>
+            </ul>
+        </div>
+    </nav>
 
-	
-	<div class="contain">
-		<div>
-			<h1> Mes TP</h1>
-			<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
-		</div>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>matière</th>
-					<th>numéro de TP</th>
-					<th>avancement</th>
-					<th>tests</th>
-					<th>action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>M1102-1103</td>
-					<td>TP1</td>
-					<td><div class="progress">
-						<div class="progress-bar" role="progressbar" style="width: 70%"></div>
-					</div></td>
-					<td>2/10</td>
-					<td> <a href="../M1102-1103/introduction.html"> accéder </a> </td>
-				</tr>
-				<tr>
-					<td>M1102-1103</td>
-					<td>TP1</td>
-					<td><div class="progress">
-						<div class="progress-bar" role="progressbar" style="width: 70%"></div>
-					</div></td>
-					<td>2/10</td>
-					<td> <a href="../M1102-1103/introduction.html"> accéder </a> </td>
-				</tr>
-				<tr>
-					<td>M1102-1103</td>
-					<td>TP1</td>
-					<td><div class="progress">
-						<div class="progress-bar" role="progressbar" style="width: 70%"></div>
-					</div></td>
-					<td>2/10</td>
-					<td> <a href="../M1102-1103/introduction.html"> accéder </a> </td>
-				</tr>
+    <div class="contain">
+        <div>
+            <h1> Mes TP</h1>
+            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
+        </div>
 
-			</tbody>
-		</table>
-	</div>
+        <table class="table" , id="tableau">
+            <!--<thead>
+                <tr>
+                    <th>matière</th>
+                    <th>numéro de TP</th>
+                    <th>avancement</th>
+                    <th>tests</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>M1102-1103</td>
+                    <td>TP1</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 70%"></div>
+                        </div>
+                    </td>
+                    <td>2/10</td>
+                    <td> <a href="../M1102-1103/introduction.html"> accéder </a> </td>
+                </tr>
+                <tr>
+                    <td>M1102-1103</td>
+                    <td>TP1</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 70%"></div>
+                        </div>
+                    </td>
+                    <td>2/10</td>
+                    <td> <a href="../M1102-1103/introduction.html"> accéder </a> </td>
+                </tr>
+                <tr>
+                    <td>M1102-1103</td>
+                    <td>TP1</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 70%"></div>
+                        </div>
+                    </td>
+                    <td>2/10</td>
+                    <td> <a href="../M1102-1103/introduction.html"> accéder </a> </td>
+                </tr>
+
+            </tbody>-->
+        </table>
+        <div class="table" , id="tableau1">
+            <script>
+                var text = [{
+                        "Matiere": "Ijava",
+                        "Tp": "M1102",
+                        "Compilation": "3/12",
+                        "Tests": "25",
+                    },
+                    {
+                        "Matiere": "Ijava",
+                        "Tp": "M1102",
+                        "Compilation": "12/12",
+                        "Tests": "100"
+                    }, {
+                        "Matiere": "Ijava",
+                        "Tp": "M1102",
+                        "Compilation": "6/12",
+                        "Tests": "50"
+                    }
+                ];
+                jsontoTable(text);
+
+                function jsontoTable(text) {
+                    var col = [];
+                    for (var i = 0; i < text.length; i++) {
+                        for (var key in text[i]) {
+                            if (col.indexOf(key) === -1) {
+                                col.push(key);
+                            }
+                        }
+                    }
+                    var thead = document.createElement("thead");
+                    var table = document.createElement("table");
+                    table.appendChild
+                    var tr = table.insertRow(-1); // TABLE ROW.
+                    var cpt = 0;
+                    for (var i = 0; i < col.length; i++) {
+                        if (col[i] == "Tests") {
+                            cpt = i;
+                        }
+                        var th = document.createElement("th"); // TABLE HEADER.
+                        th.innerHTML = col[i];
+                        tr.appendChild(th);
+                    }
+                    thead.appendChild(tr);
+                    var tbody = document.createElement("tbody");
+                    for (var i = 0; i < text.length; i++) {
+
+                        tr = tbody.insertRow(-1);
+
+                        for (var j = 0; j < col.length; j++) {
+                            var tabCell = tr.insertCell(-1);
+                            if (cpt == j) {
+                                tabCell.innerHTML = "<div class=\"progress\"><div class=\"progress-bar\" role=\"progressbar\" style=\"width: " + (text[i][col[j]]) + "%\"></div></div>";
+                            } else {
+
+                                tabCell.innerHTML = text[i][col[j]];
+                            }
+                        }
+                    }
+                    var divContainer = document.getElementById("tableau");
+                    divContainer.innerHTML = "";
+                    divContainer.appendChild(thead);
+                    divContainer.appendChild(tbody);
+
+                }
+
+            </script>
+        </div>
+    </div>
 
 
 
 </body>
+
 </html>
