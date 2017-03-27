@@ -87,10 +87,10 @@
             </table>
 
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" height="auto">
             <h3> Mon taux de completion</h3>
             <h5><a href="tp.html">(voir tous mes statistiques personnelles)</a></h5>
-            <div id="tauxcompletion">
+            <div id="tauxcompletion" style="display:inline-block; width: 80%; height=auto">
                 <canvas id="myChart"></canvas>
                 <script>
                     var jsontest = {
@@ -134,7 +134,7 @@
                                 pointHoverBackgroundColor: "rgb(224, 6, 82)",
                                 pointHoverBorderColor: "rgba(220,220,220,1)",
                                 pointHoverBorderWidth: 2,
-                                pointRadius: 1,
+                                pointRadius: 3,
                                 pointHitRadius: 10,
                                 data: ho,
                                 spanGaps: true,
