@@ -10,7 +10,7 @@ public interface UserDao {
     @SqlUpdate("CREATE TABLE users (login VARCHAR(15) PRIMARY KEY, nom VARCHAR(100), prenom VARCHAR(100), token VARCHAR(250), groupe char, rang INTEGER NOT NULL  DEFAULT 1)")
     void createUserTable();
     
-    @SqlUpdate("CREATE TABLE tp (tpid INTEGER PRIMARY KEY AUTOINCREMENT, titre VARCHAR(100), categorie VARCHAR(100), chemin VARCHAR(100), acess integer)")
+    @SqlUpdate("CREATE TABLE tp (tpid INTEGER PRIMARY KEY AUTOINCREMENT, titre VARCHAR(100), categ VARCHAR(100), path VARCHAR(100), acess integer)")
     void createTpTable();
     
     @SqlUpdate("CREATE TABLE progres (login varchar(15),tpid integer, progress integer,nbcompil integer)")
@@ -20,7 +20,7 @@ public interface UserDao {
     @GetGeneratedKeys
     int insertUser(@BindBean() User user);
     
-    @SqlUpdate("insert into tp (id,categ,titre,path) values (:id, :categ, :titre, :path)")
+    @SqlUpdate("insert into tp (tpid,categ,titre,path) values (:id, :categ, :titre, :path)")
     @GetGeneratedKeys
     int insertTp(@BindBean() Tp tp);
     
