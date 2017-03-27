@@ -11,7 +11,7 @@ import static javax.ws.rs.core.Response.Status;
 import static org.junit.Assert.assertEquals;
 
 public class UserViewDetail extends JerseyTest {
-
+/*
     @Override
     protected Application configure() {
         return new WebConfig();
@@ -30,5 +30,5 @@ public class UserViewDetail extends JerseyTest {
         Response response = target("/user/-8").request().get();
         int status = response.getStatus();
         assertEquals(Status.NOT_FOUND.getStatusCode(), status);
-    }
+    }*/
 }
