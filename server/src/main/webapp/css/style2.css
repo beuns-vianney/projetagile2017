@@ -15,12 +15,29 @@ body {
   padding:0;
 }
 
-.table {
+.col-md-6 .table {
   width: 90%;
 }
 
-h4 {
-  color : #777;
+h1 {
+  margin-top: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: left;
+}
+
+h2 {
+   margin-bottom: 20px;
+  font-size: 18px;
+  text-align: justify;
+  color: #999;
+}
+
+h3 {
+    margin-top: 50px;
+  font-weight: bold;
+  font-size: 23px;
+  text-align: left;
 }
 
 .col-md-6, .col-md-6 {
@@ -124,14 +141,15 @@ h4 {
   font-size: 8px;
 }
 
-.dropdown {
+.linkout {
   padding-left: 5px;
   border-left: 1px solid  #444;
 }
 
-.dropdown-toggle{
+.linkout a {
   color : #eee !important;
 }
+
 
 .dropdown:hover {
   background-color: #444B55;
@@ -146,6 +164,7 @@ h4 {
 .navlink .active a {
   background-color: #fafafa !important;
   color : #333A44 !important;
+  
 }
 
 .navlink:hover {
@@ -154,8 +173,6 @@ h4 {
 }
 
 .navlink a {
- padding-left: 20px !important;
- padding-right: 20px !important;
  color : #aaa !important;
  font-size: 15px !important;
 }
