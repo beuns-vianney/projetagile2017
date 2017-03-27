@@ -62,5 +62,22 @@ public class ExerciceRessource {
 		
 		return msg;
 	}
+	
+	@GET
+	@Path("/tests")
+	@Produces("application/json")
+	public ExecReturn getTests(){
+		ArrayList<String> results =null;
+		try {
+			results = (ArrayList<String>) ExecIJava.runTestsIJava(name, new File("."));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ExecReturn msg = new ExecReturn();
+		msg.setRetour(results.toArray(new String[0]));
+		
+		return msg;
+	}
 
 }
