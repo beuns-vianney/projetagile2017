@@ -8,8 +8,12 @@ import java.util.List;
 import org.gitlab4j.api.models.Commit;
 import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.RepositoryFile;
+import org.gitlab4j.api.models.Session;
 
 public class MethodeGitApi {
+
+	
+
 	int nombredecommit=1;
 	String serveur;
 	private String Private_token;
@@ -22,18 +26,32 @@ public class MethodeGitApi {
 	String contenuLastCommit;
 	
 
-	public MethodeGitApi(String serveur,String Private_token){
-		this.serveur=serveur;
-		this.Private_token=Private_token;
+	public MethodeGitApi(String username,String passwd){
+		Session s=login(username, passwd);
+		this.serveur="https://git-iut.univ-lille1.fr/";
+		this.Private_token=s.getPrivateToken();
 
 		GitLabApi gitLabApi = new GitLabApi(serveur, Private_token);
 		glapi=gitLabApi;
 
 		initialiserList();
 	}
+	
+	public Session login(String username,String passwd){
+		GitLabApi git = new GitLabApi("https://git-iut.univ-lille1.fr/", "ZMzK4uyHXpvCBwut2yka");
+		try {
+			Session s=git.getSessionApi().login(username, null, passwd);
+			return s;
+		} catch (GitLabApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void initialiserList(){
 		//INITIALISATION LISTES DES MODULES
+		nomModule.add("TP-PROFS");
 		//S1
 		nomModule.add("m1101");
 		nomModule.add("m1102");
@@ -115,8 +133,10 @@ public class MethodeGitApi {
 				push_fichier(glapi,"S2/"+s+"/", "README.md","Repertoire des tp du module "+s,"Creation README.md",getnumeroProject());
 			}else if(s.startsWith("m31")){
 				push_fichier(glapi,"S3/"+s+"/", "README.md","Repertoire des tp du module "+s,"Creation README.md",getnumeroProject());
-			}else{
+			}else if(s.startsWith("m41")){
 				push_fichier(glapi,"S4/"+s+"/", "README.md","Repertoire des tp du module "+s,"Creation README.md",getnumeroProject());
+			}else{
+				push_fichier(glapi,"TPs-Profs/","README.md","Repertoire des tps cours ","Creation README.md",getnumeroProject());
 			}
 		}
 		System.out.println("Préparation terminé");
@@ -163,7 +183,7 @@ public class MethodeGitApi {
 	}
 
 	public static void main(String[] args) throws GitLabApiException {
-		MethodeGitApi outil=new MethodeGitApi("https://git-iut.univ-lille1.fr", "Hq7godj-TazXi_HF_7Yo");
+		MethodeGitApi outil=new MethodeGitApi("ilearn", "agile2017");
 
 		try{
 			outil.Construire_Project(outil.glapi, "I-Learn-Repository", "Programmation DUT-Info");
@@ -194,5 +214,4 @@ public class MethodeGitApi {
 		
 		System.out.println(outil.contenufichier);
 	}*/
-
 }
