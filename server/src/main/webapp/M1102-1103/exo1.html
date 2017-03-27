@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script src="../js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/compile.js"></script>
@@ -17,13 +18,11 @@
 <body>
 
     <div class='breadcrumbs'>
-        <div class='inner'>
+        <div id="global">
             <ul class='cf'>
                 <li><a href="introduction.html"><span>0</span><span>Introduction</span></a></li>
                 <li><a class='active'><span>1</span><span>Exercice 1</span></a></li>
-                <li><a href="exo2.html" class='passif'><span>2</span><span>Exercice 2</span></a></li>
-                <li><a href="exo3.html" class='passif'><span>3</span><span>Exercice 3</span></a></li>
-                <li><a href="fin.html" class='passif'><span>4</span><span>Terminé</span></a></li>
+                <li><a href="fin.html" class='passif'><span>2</span><span>Terminé</span></a></li>
             </ul>
         </div>
     </div>
@@ -38,31 +37,62 @@
         <div class="paragraph">
             On souhaite concevoir une fonction qui calcule le suffixe d'un mot donné, c'est-à-dire qui retourne les n dernières lettres de ce mot. Voici la signature de la fonction que vous devez écrire: <code>String suffixe(String mot, int nbLettres)</code>.
         </div>
-
-
-        <nav>
-          <ul>
-            <li>
-              <a  id="tab1" class="tab__link" data-tab="1" href="#Q1">Q1: suffixe v1</a>
-          </li>
-          <li>
-              <a id="tab2" class="tab__link" data-tab="2" href="#Q2">Q2: suffixe v2</a>
-          </li>
-      </ul>
-  </nav>
-
-  <section class="content__item">
-     <div id="paragraph1" class="paragraph" data-content="Q1">
-        Donnez une première version de <code> suffixe</code> en supposant que l'indice donné par l'utilisateur est valide.
     </div>
-    <div id="paragraph2" class="paragraph" data-content="Q2">
-        Modifiez votre fonction afin qu'elle retourne la chaîne <code>"ERREUR"</code> si l'indice est invalide (négatif ou trop grand par rapport à la longueur du mot).
+
+    <div class="dubble-Present">
+            <div class="col-md-11">
+                <nav>
+                    <ul>
+                        <li  id="tab1" class="is-active"> 
+                            <div id="Q1" >Q1: suffixe v1</div>
+                        </li>
+                        <li id="tab2"> 
+                          <div id="Q2" >Q2: suffixe v2</div>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+          <div class="col-md-1">
+
+            <div class="progress-button elastic">
+              <button id="compilationexo1"  ><span class="glyphicon glyphicon-repeat"></span></button>
+              <svg class="progress-circle" width="50" height="50" viewBox="0 0 70.5 70.5">
+                <path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z" stroke-dasharray="204.245 204.245" stroke-dashoffset="204.245"/></path>
+            </svg>
+            <svg class="checkmark" width="50" height="50" viewBox="0 0 70.5 70.5">
+                <path d="m31.5,46.5l15.3,-23.2" stroke-dasharray="27.80 27.80" stroke-dashoffset="27.80"/></path>
+                <path d="m31.5,46.5l-8.5,-7.1" stroke-dasharray="11.7 11.7" stroke-dashoffset="11.7"/></path>
+            </svg>
+            <svg class="cross" width="50" height="50" viewBox="0 0 70.5 70.5">
+                <path d="m35,35l-9.3,-9.3"/></path>
+                <path d="m35,35l9.3,9.3"/></path>
+                <path d="m35,35l-9.3,9.3"/></path>
+                <path d="m35,35l9.3,-9.3"/></path>
+            </svg>
+        </div>
     </div>
+</div>
+
+<section div="content-item" class="content-item">
+ <div id="paragraph1" class="paragraph" data-content="Q1">
+    Donnez une première version de <code> suffixe</code> en supposant que l'indice donné par l'utilisateur est valide.
+</div>
+<div id="paragraph2" class="paragraph" data-content="Q2">
+    Modifiez votre fonction afin qu'elle retourne la chaîne <code>"ERREUR"</code> si l'indice est invalide (négatif ou trop grand par rapport à la longueur du mot).
+</div>
 </section>
 
-<div id="wrap-editor" class="wrap-editor">
-    <div id="editor" class="editor"> </div>
+<div class="row">
+    <div id="wrap-editor" class="wrap-editor">
+        <div class="col-md-7">
+            <div id="editor" class="editor"> </div>
+        </div>
+        <div class="col-md-5">
+            <div id="console" class="answer"><div class="title"> console </div> $halleuxa : </div>
+        </div>
+    </div>
 </div>
+
 
 <div id="serv1" class="console , neutre">
     <b>Q1/Serv :</b> En attente de compilation...
@@ -78,17 +108,22 @@
     var editor = ace.edit("editor");
     editor.getSession().setMode("ace/mode/java");
     editor.setTheme("ace/theme/xcode");
+    $("#editor").height($("#wrap-editor").height() - 12);
+    $("#console").height($("#wrap-editor").height() - 12);
+    document.getElementById("Q1").className = "is-active";
+    document.getElementById("Q2").className = "";
     $(document).ready(function() {
         new ResizeSensor(jQuery('#wrap-editor'), function() {
             $("#editor").height($("#wrap-editor").height() - 12);
-            $("#editor").width($("#wrap-editor").width() - 12);
+            $("#console").height($("#wrap-editor").height() - 12);
             editor.resize(true);
         });
         $("#paragraph1").show();
         $("#paragraph2").hide();
         $("#serv1").show();
         $("#serv2").hide();
-        document.getElementById("tab1").className = "tab__link, is-active";
+        document.getElementById("tab1").className = "is-active";
+        document.getElementById("Q1").className = "is-active";
 
         $("#tab1").click(function() {
             $("#paragraph1").show();
@@ -97,8 +132,10 @@
             serv2show = false;
             $("#paragraph2").hide();
             $("#serv2").hide();
-            document.getElementById("tab1").className = "tab__link, is-active";
-            document.getElementById("tab2").className = "tab__link";
+            document.getElementById("tab1").className = "is-active";
+            document.getElementById("tab2").className = "";
+            document.getElementById("Q1").className = "is-active";
+            document.getElementById("Q2").className = "";
         });
 
         $("#tab2").click(function() {
@@ -108,8 +145,10 @@
             serv2show = true;
             $("#paragraph1").hide();
             $("#serv2").show();
-            document.getElementById("tab2").className = "tab__link, is-active";
-            document.getElementById("tab1").className = "tab__link";
+            document.getElementById("tab2").className = "is-active";
+            document.getElementById("tab1").className = "";
+            document.getElementById("Q2").className = "is-active";
+            document.getElementById("Q1").className = "";
         });
 
     });
@@ -118,7 +157,6 @@
             return false;
         }
     });
-
 
     if ( serv1show === true )  {
         compile("editor", "compilationexo1", "serv1");
@@ -129,26 +167,75 @@
     }
 
 
+    $('.progress-button button').click(function(){
+      $('.progress-button').addClass('loading');
+      draw('.progress-circle path');
+      if( $(".console").hasClass("valid") ){
+        setTimeout(toggleSuccess, 1000);
+    } else {
+        setTimeout(toggleError, 1000);
+    }
+});
+
+    var toggleSuccess = function(){
+      $('.progress-button').addClass('success');
+      draw('.checkmark path');
+      setTimeout(function(){
+        $('.progress-button')
+        .removeClass('success')
+        .removeClass('loading');
+        resetDashes();
+    },2000);
+  };
+
+  var toggleError = function(){
+      $('.progress-button').addClass('errorfail');
+      draw('.cross path');
+      setTimeout(function(){
+        $('.progress-button')
+        .removeClass('errorfail')
+        .removeClass('loading');
+        resetDashes();
+    },2000);
+  }; 
+
+  function draw(loc) {
+      var paths = document.querySelectorAll(loc);
+      console.log(paths);
+      for( var i = 0; i < paths.length; i++ ){
+        paths[i].style.strokeDashoffset = '0';
+    }
+}
+
+function resetDashes() {
+  var paths = document.querySelectorAll('path');
+  for( var i = 0; i < paths.length; i++ ){
+    var path = paths[i];
+    var length = path.getTotalLength();
+    path.style.strokeDasharray = length + ' ' + length;
+    path.style.strokeDashoffset = length;
+}
+}
+
 </script>
 
 </div>
 
 <div class="spacebutton">
-    <button onclick="location.href='introduction.html'" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Précédent</button>
-    <button type="button" class="button button--sharp-sm button--outline-sharp background--outline" id="next">Suivant</button>
-    <button id="compilationexo1" type="button" class="button button--sharp-sm button--outline-sharp background--outline">Compiler</button>
+    <button onclick="location.href='introduction.html'" type="button" class="button btn-action">Précédent</button>
+    <button type="button" class="button btn-action-passif" id="next">Suivant</button>
 </div>
 <script>
     $("#next").click(function() {
         if ($(".console").hasClass("neutre") || $(".console").hasClass("error")) {
             return false;
         } else {
-            document.location.href = "exo2.html";
+            document.getElementById("next").className = "button btn-action";
+            document.location.href = "fin.html";
         }
     });
 
 </script>
-
 
 </body>
 
