@@ -53,3 +53,20 @@ function exec(name, url, div_reponse){
        		}        
     });
 }
+
+function tests(name, url, div_reponse){
+    $.ajax({
+       type: 'GET',
+        url: url+"/tests",
+        dataType: "json",
+        success: function (data) {
+            for(var i = 0; i<data.retour.length; i++){
+                console.log(data.retour[i]);
+                $('#' + div_reponse).text(data.retour[i]);
+            }
+       },
+       error : function(jqXHR, textStatus, errorThrown) {
+       			alert('error: ' + textStatus);
+       		}        
+    });
+}
