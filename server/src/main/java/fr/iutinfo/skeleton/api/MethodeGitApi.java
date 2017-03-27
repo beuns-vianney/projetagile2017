@@ -38,13 +38,14 @@ public class MethodeGitApi {
 	public Session login(String username,String passwd){
 		GitLabApi git = new GitLabApi(serveur, "ZMzK4uyHXpvCBwut2yka");
 		try {
-
+			System.out.println("CHALUT");
 			Session s = git.getSessionApi().login(username, null, passwd);
-			this.Private_token=s.getPrivateToken();
+			System.out.println("CHAVA");
+			this.Private_token = s.getPrivateToken();
+			System.out.println("Session: " + s.getPrivateToken());
 			return s;
 		} catch (GitLabApiException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -181,7 +182,7 @@ public class MethodeGitApi {
 		contenuLastCommit=lcommit.get(0).getMessage();
 		System.out.println(contenuLastCommit);
 	}
-
+/*
 	public static void main(String[] args) throws GitLabApiException {
 		MethodeGitApi outil=new MethodeGitApi("ilearn", "agile2017");
 
@@ -196,7 +197,7 @@ public class MethodeGitApi {
 		}catch (Exception e) {}
 		outil.recupCommits(outil.glapi, outil.numeroproject);
 		//outil.test(outil);
-	}
+	}*/
 
 	public String getPrivateToken() {
 		return Private_token;
