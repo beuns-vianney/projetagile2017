@@ -1,5 +1,7 @@
+var oolean;
 function compile(div_editor, div_button, div_response, div_tests, next_button) {
     var editor = ace.edit(div_editor);
+
     $(document).ready(function () {
 
             console.log(editor.getValue());
@@ -14,25 +16,28 @@ function compile(div_editor, div_button, div_response, div_tests, next_button) {
                     "code": editor.getValue()
                 }),
                 success: function (data, textStatus, jqXHR) {
+                    
                     if (data.retour == "Compilation Successful !") {
                         $("#" + div_response).attr('class', 'console , valid');
                         tests(data.name, url, div_response, div_tests, next_button);
+                        $("#" + div_response).text(data.retour);
+                        
+                        oolean = true;
                     } else {
-                        /*    var tab = data.retour.split("</br>");
-                            for(var i = 0; i<tab.length; i++){
-                                $("#" + div_response).text( tab[i] );
-                            }*/
                         $("#" + div_response).attr('class', 'console , error');
+                        $("#" + div_response).text(data.retour);
+                        
+                        oolean = false;
                     }
-                    $("#" + div_response).text(data.retour);
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log('postUser error: ' + textStatus);
+                    oolean = false;
                 }
         })
 
     });
+    return oolean;
 }
 
 function exec(name, url, div_reponse){
