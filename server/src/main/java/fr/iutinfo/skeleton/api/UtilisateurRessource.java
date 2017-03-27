@@ -22,9 +22,13 @@ public class UtilisateurRessource {
 	@Produces("application/json")
 	public Utilisateur connection(@FormParam("identifiant") String compte, @FormParam("mdp") String mdp) {
 		Utilisateur user = null;
+		MethodeGitApi mtgapi;
 		try{
-			MethodeGitApi mtgapi =new MethodeGitApi(compte,mdp);
+			mtgapi =new MethodeGitApi(compte,mdp);
+			mtgapi.getPrivate_token();
+			
 		}catch(Exception e){}
+		
 		
 		return user;
     }
