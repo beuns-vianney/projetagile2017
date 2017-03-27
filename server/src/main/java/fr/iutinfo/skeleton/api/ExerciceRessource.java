@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ExerciceRessource {
 	
-	private String name;
+	private static String name;
 	
 	@POST
 //	@Consumes("application/json")

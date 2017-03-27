@@ -27,5 +27,16 @@ public class ExecIJava {
 		    pro.waitFor();
 		    return outputProgamm;
 		  }
+		  
+		  public static void main(String[] args) {
+			try {
+				for (String s : ExecIJava.runProgrammIJava("Mdr", new File(".."))) {
+					System.out.println(s);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 }
