@@ -48,33 +48,25 @@ public class UtilisateurRessource {
 		NewCookie cookie = null;
 	    
 		try{
-			System.out.println("COMPTE: "+compte);
 			mtgapi = new MethodeGitApi(); 
 			Session session = mtgapi.login(compte, mdp);
-			System.out.println("MDP: "+mdp);
 			if (session != null) {
 //				user = RequeteBDD.usersByToken(mtgapi.getPrivateToken());
 //				if (user == null) {
 //					RequeteBDD.insert(session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], 1, 1, session.getPrivateToken());
 //				}
-				System.out.println("Session : "+session.getName());
-				System.out.println("TOKEN: "+mtgapi.getPrivateToken());
-				cookie = new NewCookie("ILEARN_TOKEN", session.getPrivateToken());
+				cookie = new NewCookie("ILEARN_TOKEN", mtgapi.getPrivateToken());
 				
 				java.net.URI location = new java.net.URI("../Index/index.html");
 				ResponseBuilder r = Response.temporaryRedirect(location);
 				r.cookie(cookie);
 				
-				
 				return r.build();
-//				System.out.println(user);
-//				System.out.println("================> PAR ICI 3");
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
 		cookie = new NewCookie("ILEARN_TOKEN", null);
 		return Response.noContent().cookie(cookie).build();
-		//return user;
     }
 }
