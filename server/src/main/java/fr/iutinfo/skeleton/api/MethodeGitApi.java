@@ -1,10 +1,12 @@
-package org.gitlab4j.api;
+package fr.iutinfo.skeleton.api;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import org.gitlab4j.api.GitLabApi;
+import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Commit;
 import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.RepositoryFile;
@@ -14,16 +16,16 @@ public class MethodeGitApi {
 
 	
 
-	int nombredecommit=1;
-	String serveur;
+	private int nombredecommit=1;
+	private String serveur;
 	private String Private_token;
-	GitLabApi glapi;
-	Integer numeroproject;
-	List<String> nomModule=new ArrayList<>();
+	private GitLabApi glapi;
+	private Integer numeroproject;
+	private List<String> nomModule=new ArrayList<>();
 	boolean compilation;
-	String contenufichier;
-	List<Commit> lcommit;
-	String contenuLastCommit;
+	private String contenufichier;
+	private List<Commit> lcommit;
+	private String contenuLastCommit;
 	
 
 	public MethodeGitApi(String username,String passwd){
@@ -196,6 +198,10 @@ public class MethodeGitApi {
 		}catch (Exception e) {}
 		outil.recupCommits(outil.glapi, outil.numeroproject);
 		//outil.test(outil);
+	}
+
+	public String getPrivateToken() {
+		return Private_token;
 	}
 
 	/*public void test(MethodeGitApi outil){
