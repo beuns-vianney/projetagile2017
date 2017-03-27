@@ -263,20 +263,18 @@
 			});
 
 
-
 			$('.progress-button button').click(function(){
-
-				if ( serv1show === true )  {
-					compile("editor", "compilationexo1", "serv1");
-					console.log("serv1");
-				}else{
-					compile("editor", "compilationexo1", "serv2");
-					console.log("serv2");
-				}
+                var serv;
+			if ( serv1show == true )  {
+				serv = compile("editor", "compilationexo1", "serv1", "serv2", "suivant");
+			}else{
+				serv = compile("editor", "compilationexo1", "serv2", "serv1", "suivant");
+			}
+			
 
 				$('.progress-button').addClass('loading');
 				draw('.progress-circle path');
-				if( $(".console").hasClass("valid") ){
+				if(serv == true){
 					setTimeout(toggleSuccess, 1000);
 				} else {
 					setTimeout(toggleError, 1000);

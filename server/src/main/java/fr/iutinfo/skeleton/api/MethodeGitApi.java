@@ -14,10 +14,10 @@ import org.gitlab4j.api.models.Session;
 
 public class MethodeGitApi {
 
-	
+
 
 	private int nombredecommit=1;
-	private String serveur;
+	private final static String serveur = "https://git-iut.univ-lille1.fr/";
 	private String Private_token;
 	private GitLabApi glapi;
 	private Integer numeroproject;
@@ -26,27 +26,25 @@ public class MethodeGitApi {
 	private String contenufichier;
 	private List<Commit> lcommit;
 	private String contenuLastCommit;
-	
 
-	public MethodeGitApi(String username,String passwd){
-		Session s=login(username, passwd);
-		this.serveur="https://git-iut.univ-lille1.fr/";
-		this.Private_token=s.getPrivateToken();
 
+	public MethodeGitApi(){
 		GitLabApi gitLabApi = new GitLabApi(serveur, Private_token);
 		glapi=gitLabApi;
 
 		initialiserList();
 	}
-	
+
 	public Session login(String username,String passwd){
-		GitLabApi git = new GitLabApi("https://git-iut.univ-lille1.fr/", "ZMzK4uyHXpvCBwut2yka");
+		GitLabApi git = new GitLabApi(serveur, "ZMzK4uyHXpvCBwut2yka");
 		try {
-			Session s=git.getSessionApi().login(username, null, passwd);
+
+			Session s = git.getSessionApi().login(username, null, passwd);
+			this.Private_token=s.getPrivateToken();
 			return s;
 		} catch (GitLabApiException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return null;
 	}
@@ -172,14 +170,14 @@ public class MethodeGitApi {
 		String s=new String(decoded,"UTF-8"); 
 		contenufichier=s;
 	}
-	
+
 	public void recupCommits(GitLabApi glapi, Integer reposnumb) throws GitLabApiException{
 		List<Commit> lcommit=glapi.getCommitsApi().getCommits(reposnumb);
 		for (Commit commit : lcommit) {
 			System.out.println("Commit ");
 			System.out.println(commit.getMessage());
 		}
-		
+
 		contenuLastCommit=lcommit.get(0).getMessage();
 		System.out.println(contenuLastCommit);
 	}
@@ -212,12 +210,12 @@ public class MethodeGitApi {
 		try{
 			outil.modifier_fichier(outil.glapi, outil.numeroproject, "/S2/m2101/HelloWorld.java","Toujours pas ",outil.compilation);
 		}catch (Exception e) {}
-		
-		
+
+
 		try{
 			outil.recupContenuFichier("/S2/m2101/HelloWorld.java");
 		}catch(Exception e){}
-		
+
 		System.out.println(outil.contenufichier);
 	}*/
 }
