@@ -3,20 +3,23 @@ package fr.iutinfo.skeleton.api;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Exercice {
-	private String username;
-	private String pathtp, code;
-	private int numeroExercice;
+	private int id;
+	private String code;
+	private String titre;
+	private List<Boolean> tests = new ArrayList<>();
 
-	public Exercice(String code) {
+	public Exercice(int id, String titre, String code) {
+		this(id, titre);
 		this.setCode(code);
 	}
-	public Exercice(String username,String pathtp,int numeroExercice){
-		this.username=username;
-		this.pathtp=pathtp;
-		this.numeroExercice=numeroExercice;
+	public Exercice(int id, String titre){
+		this.setId(id);
+		this.setTitre(titre);
 	}
 
 	public static File StringtoJava(String stojava,String filepath){
@@ -31,48 +34,8 @@ public class Exercice {
 			e.printStackTrace();
 		}
 		return file;
-		/*
-		FileOutputStream fos=null;
-		File stoj=null;
-		try{
-			stoj=new File(filepath);
-			fos =new FileOutputStream(stoj);
-
-			if(!stoj.exists()){
-				stoj.createNewFile();
-			}
-
-			byte [] tab= stojava.getBytes();
-
-			fos.write(tab);
-			fos.flush();
-
-
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			try{
-				if(fos !=null){
-					fos.close();
-				}
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		return stoj;*/
 	}
 
-	public String getUsername(){
-		return username;
-	}
-
-	public String getExercice(){
-		return pathtp;
-	}
-
-	public int getNumeroExercice(){
-		return numeroExercice;
-	}
 	/**
 	 * @return the code
 	 */
@@ -84,6 +47,42 @@ public class Exercice {
 	 */
 	public void setCode(String code) {
 		this.code = code;
+	}
+	/**
+	 * @return the titre
+	 */
+	public String getTitre() {
+		return titre;
+	}
+	/**
+	 * @param titre the titre to set
+	 */
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
+	 * @return the tests
+	 */
+	public List<Boolean> getTests() {
+		return tests;
+	}
+	/**
+	 * @param tests the tests to set
+	 */
+	public void setTests(List<Boolean> tests) {
+		this.tests = tests;
 	}
 
 }
