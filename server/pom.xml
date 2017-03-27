@@ -93,7 +93,6 @@
 			<artifactId>guava</artifactId>
 			<version>18.0</version>
 		</dependency>
-
 		<!-- Common skeleton like DTO -->
 		<dependency>
 			<groupId>fr.iutinfo.skeleton</groupId>
