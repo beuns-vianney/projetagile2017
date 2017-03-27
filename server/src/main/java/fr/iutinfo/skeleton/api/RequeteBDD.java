@@ -67,6 +67,23 @@ public class RequeteBDD {
 		return users;
 	}
 	
+	public static Utilisateur usersByToken(String token) {
+		Utilisateur users = null;
+		try {
+			String query = "SELECT id nom, prenom FROM users WHERE token = ?";
+			PreparedStatement prpstmt = BDD.getInstance().prepareStatement(query);
+			prpstmt.setString(1, token);
+			ResultSet rs = prpstmt.executeQuery();
+			
+			while (rs.next()) {
+				users = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
 	public static boolean insert(String nom, String prenom, int groupe, int rang) {
 		String sql = "INSERT INTO users(nom, prenom, groupe, rang) VALUES(?, ?, ?, ?)";
 
