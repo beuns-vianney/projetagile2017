@@ -183,7 +183,7 @@ public class MethodeGitApi {
 	}
 
 	public static void main(String[] args) throws GitLabApiException {
-		MethodeGitApi outil=new MethodeGitApi("ilearn", "agile2017");
+		/*MethodeGitApi outil=new MethodeGitApi();
 
 		try{
 			outil.Construire_Project(outil.glapi, "I-Learn-Repository", "Programmation DUT-Info");
@@ -195,7 +195,8 @@ public class MethodeGitApi {
 			outil.prepare_repos(outil.glapi, outil.getModulenom());
 		}catch (Exception e) {}
 		outil.recupCommits(outil.glapi, outil.numeroproject);
-		//outil.test(outil);
+		//outil.test(outil);*/
+		System.out.println("jdbc:sqlite:" + System.getProperty("user.dir") + System.getProperty("file.separator") + "data.db");
 	}
 
 	public String getPrivateToken() {

@@ -25,29 +25,29 @@ public class AuthFilter implements ContainerRequestFilter {
         String scheme = containerRequest.getUriInfo().getRequestUri().getScheme();
         logger.debug("authorizationHeader : " + authorizationHeader);
 
-        if (authorizationHeader != null) {
-            String[] loginPassword = BasicAuth.decode(authorizationHeader);
-            checkLoginPassword(loginPassword);
-            String login = loginPassword[0];
-            String password = loginPassword[1];
-            logger.debug("login : " + login + ", password : " + password);
-            User user = loadUserFromLogin(login);
-            if (user.isGoodPassword(password)) {
-                logger.debug("good password !");
-                containerRequest.setSecurityContext(new AppSecurityContext(user, scheme));
-            } else {
-                containerRequest.setSecurityContext(new AppSecurityContext(User.getAnonymousUser(), scheme));
-            }
-        } else {
-            containerRequest.setSecurityContext(new AppSecurityContext(User.getAnonymousUser(), scheme));
-        }
+       // if (authorizationHeader != null) {
+         //   String[] loginPassword = BasicAuth.decode(authorizationHeader);
+         //   checkLoginPassword(loginPassword);
+         //   String login = loginPassword[0];
+         //   String password = loginPassword[1];
+         //   logger.debug("login : " + login + ", password : " + password);
+           // User user = loadUserFromLogin(login);
+           // if (user.isGoodPassword(password)) {
+           //     logger.debug("good password !");
+              //  containerRequest.setSecurityContext(new AppSecurityContext(user, scheme));
+          //  } else {
+            //    containerRequest.setSecurityContext(new AppSecurityContext(User.getAnonymousUser(), scheme));
+         //   }
+       // } else {
+           // containerRequest.setSecurityContext(new AppSecurityContext(User.getAnonymousUser(), scheme));
+       // }
     }
 
     private User loadUserFromLogin(String login) {
         UserDao dao = BDDFactory.getDbi().open(UserDao.class);
         User user = dao.findByName(login);
         if (user == null) {
-            user = User.getAnonymousUser();
+           // user = User.getAnonymousUser();
         }
         return user;
     }

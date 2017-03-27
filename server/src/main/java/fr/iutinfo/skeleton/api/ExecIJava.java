@@ -36,5 +36,23 @@ public class ExecIJava {
 		pro.waitFor();
 		return outputProgamm;
 	}
+	
+	public static List<String> getGroupe(String username) throws Exception{
+		Process pro = Runtime.getRuntime().exec("getent group | grep "+username+" | cut -f1 -d':'");
+		List<String> outputProgamm=printLines(pro.getInputStream());
+		outputProgamm.addAll(printLines(pro.getErrorStream()));
+		System.out.println(outputProgamm);
+		pro.waitFor();
+		return outputProgamm/*.charAt(outputProgamm.length()-1)*/;
+	}
+	
+	public static void main(String[] args) {
+		try {
+			System.out.println(ExecIJava.getGroupe("picaultm")+"");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
