@@ -22,7 +22,7 @@ public class ExecIJava {
 	}
 
 	public static List<String> runProgrammIJava(String nameProgramm,File dir) throws Exception {
-		Process pro = Runtime.getRuntime().exec("java -cp ../ap.jar:. "+nameProgramm,null,dir);
+		Process pro = Runtime.getRuntime().exec("java -cp .."+ System.getProperty("file.separator")+"ap.jar:. "+nameProgramm,null,dir);
 		List<String> outputProgamm=printLines(pro.getInputStream());
 		outputProgamm.addAll(printLines(pro.getErrorStream()));
 		pro.waitFor();
@@ -30,7 +30,7 @@ public class ExecIJava {
 	}
 
 	public static List<String> runTestsIJava(String nameProgram, File dir) throws Exception{
-		Process pro = Runtime.getRuntime().exec("java -Dtest -cp ../ap.jar:. "+nameProgram,null,dir);
+		Process pro = Runtime.getRuntime().exec("java -Dtest -cp .."+ System.getProperty("file.separator")+"ap.jar:. "+nameProgram,null,dir);
 		List<String> outputProgamm=printLines(pro.getInputStream());
 		outputProgamm.addAll(printLines(pro.getErrorStream()));
 		pro.waitFor();
