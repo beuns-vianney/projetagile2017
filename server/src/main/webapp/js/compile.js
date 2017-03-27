@@ -62,9 +62,21 @@ function tests(name, url, div_reponse){
                 console.log(data.retour[i]);
                 $('#' + div_reponse).text(data.retour[i]);
             }
+            if(testOK($('#' + div_reponse).text())){
+                console.log("good");
+            }
+            
        },
        error : function(jqXHR, textStatus, errorThrown) {
        			alert('error: ' + textStatus);
        		}        
     });
+}
+
+function testOK(tests){
+    var tab = tests.split('%');
+    var pourcentage = tab[0].substring(tab[0].length - 3);
+    if(pourcentage == "100"){
+        return true;
+    }else return false;
 }
