@@ -32,6 +32,10 @@ public interface UserDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
     User findByGroupe(@Bind("groupe") char groupe);
 
+    @SqlQuery("select * from users where token=:token")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    User findByToken(@Bind("token") String token);
+    
     @SqlUpdate("drop table if exists users")
     void dropUserTable();
     
