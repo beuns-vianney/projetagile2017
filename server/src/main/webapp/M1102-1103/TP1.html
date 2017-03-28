@@ -116,8 +116,8 @@
 		<div class ="exercice">
 			<h1>Description</h1>
 			<div class="paragraph">
-				nombre d'exercices : 3 <br/>
-				durée estimée : 120 minutes
+				nombre d'exercices : 1 <br/>
+				durée estimée : 20 minutes
 
 			</div>
 		</div>
@@ -200,14 +200,17 @@
 			</div>
 		</div>
 
-
-		<div id="serv1" class="console , neutre">
-			<b>Q1/Serv :</b> En attente de compilation...
-		</div>
-
-		<div id="serv2" class="console , neutre">
-			<b>Q2/Serv :</b> En attente de compilation...
-		</div>
+        <div>
+            <div class="col-md-1">
+                <button id="run" class="playrun"><span class="glyphicon glyphicon-play"></span></button>
+            </div>
+            <div id="serv1" class="col-md-11, console , neutre">
+                <b>Q1/Serv :</b> En attente de compilation...
+            </div>
+            <div id="serv2" class="col-md-11, console , neutre">
+                <b>Q2/Serv :</b> En attente de compilation...
+            </div>
+        </div>
 
 		<script>
 			var serv1show = true;
@@ -262,6 +265,9 @@
 				}
 			});
 
+            $('#run').click(function(){
+                   compil_exec("editor", "console");
+            });
 
 			$('.progress-button button').click(function(){
                 var serv;

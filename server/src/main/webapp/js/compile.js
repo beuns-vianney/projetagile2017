@@ -40,15 +40,52 @@ function compile(div_editor, div_button, div_response, div_tests, next_button) {
     return oolean;
 }
 
+function compil_exec(div_editor, div_response) {
+    var editor = ace.edit(div_editor);
+
+    $(document).ready(function () {
+
+            console.log(editor.getValue());
+            var url = "../v1/exercice";
+            console.log("postUserGeneric " + url)
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: url,
+                dataType: "json",
+                data: JSON.stringify({
+                    "code": editor.getValue()
+                }),
+                success: function (data, textStatus, jqXHR) {
+                    
+                    if (data.retour == "Compilation Successful !") {
+                        exec(data.name, url, div_response);
+                        
+                    } else {
+                        $("#" + div_response).attr('class', 'console , error');                        
+                    }
+                    $("#" + div_response).text(data.retour);
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('postUser error: ' + textStatus);
+                }
+        })
+
+    });
+}
+
+
 function exec(name, url, div_reponse){
     $.ajax({
        type: 'GET',
         url: url,
         dataType: "json",
         success: function (data) {
+            $('#' + div_reponse).text("");
             for(var i = 0; i<data.retour.length; i++){
                 console.log(data.retour[i]);
-                $('#' + div_reponse).text(data.retour[i]);
+                $('#' + div_reponse).text($('#' + div_reponse).text() +"\n"+ data.retour[i]);
             }
        },
        error : function(jqXHR, textStatus, errorThrown) {
@@ -63,16 +100,21 @@ function tests(name, url, div_reponse, div_tests, next_button){
         url: url+"/tests",
         dataType: "json",
         success: function (data) {
-            for(var i = 0; i<data.retour.length; i++){
+            if(data.retour.length <= 1){
+                $('#' + div_reponse).text("Aucun tests à effectuer.");
+            }else{
+                for(var i = 0; i<data.retour.length; i++){
                 console.log(data.retour[i]);
                 $('#' + div_reponse).text(data.retour[i]);
+                }
+                if(!testOK($('#' + div_reponse).text())){
+                   $('#' + div_reponse).attr("class", 'console , error')
+                }
+                if(testOK($('#' + div_reponse).text()) && testOK($('#' + div_tests).text())){
+                    $('#'+next_button).attr("class", "button btn-action");
+                }
             }
-            if(!testOK($('#' + div_reponse).text())){
-               $('#' + div_reponse).attr("class", 'console , error')
-            }
-            if(testOK($('#' + div_reponse).text()) && testOK($('#' + div_tests).text())){
-                $('#'+next_button).attr("class", "button btn-action");
-            }
+            
             
        },
        error : function(jqXHR, textStatus, errorThrown) {
