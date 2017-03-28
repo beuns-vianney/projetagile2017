@@ -132,33 +132,7 @@
                     "lastName": "Jones"
                 }
             ];
-            /*
-                        //var tab = jQuery.parseJSON(text);
-                        document.write("<table><th>Nom</th><th>Prenom</th><th>Compilation</th><th>Temps d'inactivité</th><th>Tests</th>");
-                        var tty = Object.keys(text);
-                        console.log(tty);
-                        var lg = "";
-                        var hey = Object.keys(text.[tty[0]][1]);
 
-                        /*for (ty in text.employees) {
-                            hey.push(ty);
-                        }
-                        console.log(hey);
-                        for (var i = 0; i < text.employees.length; i++) {
-                            lg += "<tr>";
-                            for (var j = 0; j < hey.length; j++) {
-                                console.log(text.employees[i][hey[j]]);
-                                var t = text.employees[i][hey[j]];
-                                var ontest = text.employees[t];
-                                lg += "<td>" + t + "</td>";
-                            }
-                            lg += "</tr>";
-                        }
-                        lg += "</table>";
-                        console.log(lg);
-                        $("#tableau").append(lg);
-                        // console.log(tab.employees.length);
-            */
             function jsontoTable(text) {
                 var col = [];
                 for (var i = 0; i < text.length; i++) {
