@@ -44,11 +44,7 @@ public class MethodeGitApi {
 		glapi=new GitLabApi(serveur, private_token);
 		Session session;
 		try {
-			System.out.println("CHALUT");
 			session = glapi.getSessionApi().login(username, null, passwd);
-			System.out.println("CHAVA");
-			System.out.println(session.getPrivateToken());
-			System.out.println("Session: " + session.getUsername());
 			return session;
 		} catch (GitLabApiException e) {
 			e.printStackTrace();
@@ -190,43 +186,8 @@ public class MethodeGitApi {
 		contenuLastCommit=lcommit.get(0).getMessage();
 		System.out.println(contenuLastCommit);
 	}
-/*
-	public static void main(String[] args) throws GitLabApiException {
-		/*MethodeGitApi outil=new MethodeGitApi();
-
-		try{
-			outil.Construire_Project(outil.glapi, "I-Learn-Repository", "Programmation DUT-Info");
-		}catch(Exception e){}
-
-		outil.recupNumeroProjet(outil.glapi,"I-Learn-Repository");
-
-		try{
-			outil.prepare_repos(outil.glapi, outil.getModulenom());
-		}catch (Exception e) {}
-		outil.recupCommits(outil.glapi, outil.numeroproject);
-		//outil.test(outil);
-		//outil.test(outil);
-	}*/
-
 
 	public String getPrivateToken() {
 		return private_token;
 	}
-
-	/*public void test(MethodeGitApi outil){
-		try{
-			outil.push_fichier(outil.glapi, "S2/m2101/","HelloWorld.java","Ah bah mince c'est pas du IJAVA", "Commit: "+outil.nombredecommit+" Compilation: "+outil.compilation, outil.numeroproject);
-		}catch(Exception e){}
-
-		try{
-			outil.modifier_fichier(outil.glapi, outil.numeroproject, "/S2/m2101/HelloWorld.java","Toujours pas ",outil.compilation);
-		}catch (Exception e) {}
-
-
-		try{
-			outil.recupContenuFichier("/S2/m2101/HelloWorld.java");
-		}catch(Exception e){}
-
-		System.out.println(outil.contenufichier);
-	}*/
 }

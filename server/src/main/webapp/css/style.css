@@ -70,7 +70,6 @@ body {
 	margin-bottom: 30px;
 	height: auto;
 	font-family: 'Roboto', sans-serif;
-	padding-left: 10px;
 	margin-bottom: 20px;
 	font-size: 13px;
 	text-align: justify;
@@ -264,6 +263,30 @@ ul {
   padding-left: 0px !important;
   padding-right: 0px !important;
 }
+
+.playrun{
+	font-family : 'Roboto', sans-serif;
+	padding-top: 3px;
+	padding-bottom: 3px;
+  height: auto;
+  border-radius: 0;
+border: 5px solid #1ECD97;
+  color: #1ECD97;
+  background-color: transparent;
+  font-size: 13px;
+  text-align:left;
+  display:block;
+  padding-left: 10px;
+  padding-right: 10px;
+  height:100%;
+}
+
+.playrun:hover{
+background: #1ECD97;
+color: #fff;
+}
+
+
 
 .col-md-1 {
   text-align: right;

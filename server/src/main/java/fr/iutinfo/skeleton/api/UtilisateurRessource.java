@@ -29,71 +29,73 @@ import fr.iutinfo.skeleton.common.dto.UserDto;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UtilisateurRessource {
-    
-	final static Logger logger = LoggerFactory.getLogger(UserResource.class);
-    private static UserDao dao = getDbi().open(UserDao.class);
-	
-	public UtilisateurRessource() throws SQLException {
-        if (!tableExist("users")) {
-            logger.debug("Create table users");
-            dao.createUserTable();
-            dao.insertUser(new User("belsa","bels","alexis",""));
-        }
-        if (!tableExist("users")) {
-        dao.createTpTable();
-        dao.insertTp(new Tp(0,"m0000","tp1","./"));
-        }
-        if (!tableExist("progres")) {
-        dao.createProgresTable();
-        }
-    }
 
-	 @GET
-	    @Path("/{login}")
-	    public UserDto getUser(@PathParam("login") String login) {
-	        User user = dao.findByLogin(login);
-	        if (user == null) {
-	            throw new WebApplicationException(404);
-	        }
-	        return user.convertToDto();
-	    }
+	final static Logger logger = LoggerFactory.getLogger(UserResource.class);
+	private static UserDao dao = getDbi().open(UserDao.class);
 	
+    public static void main(String[] args) {
+    	dao.updateProgression("belsa",65,0);
+    	dao.incrementCompil("belsa",0);
+	}
+
+	public UtilisateurRessource() throws SQLException {
+		if (!tableExist("users")) {
+			logger.debug("Create table users");
+			dao.createUserTable();
+			dao.insertUser(new User("belsa","bels","alexis",""));
+		}
+		if (!tableExist("users")) {
+			dao.createTpTable();
+			dao.insertTp(new Tp(0,"m0000","tp1","./"));
+		}
+		if (!tableExist("progres")) {
+			dao.createProgresTable();
+		}
+	}
+
+	@GET
+	@Path("/{login}")
+	public UserDto getUser(@PathParam("login") String login) {
+		User user = dao.findByLogin(login);
+		if (user == null) {
+			throw new WebApplicationException(404);
+		}
+		return user.convertToDto();
+	}
+
 	@POST
 	@Path("/connexion")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response connection(@FormParam("identifiant") String compte, @FormParam("mdp") String mdp) {
-		Utilisateur user = null;
+		User user = null;
 		MethodeGitApi mtgapi;
 		NewCookie cookie = null;
-	    
+
 		try{
-			System.out.println("COMPTE: "+compte);
 			mtgapi = new MethodeGitApi(); 
 			Session session = mtgapi.login(compte, mdp);
-			System.out.println("MDP: "+mdp);
 			if (session != null) {
-//				user = RequeteBDD.usersByToken(mtgapi.getPrivateToken());
-//				if (user == null) {
-//					RequeteBDD.insert(session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], 1, 1, session.getPrivateToken());
-//				}
-				System.out.println("Session : "+session.getName());
-				System.out.println("TOKEN: "+mtgapi.getPrivateToken());
-				cookie = new NewCookie("ILEARN_TOKEN", session.getPrivateToken());
-				
-				java.net.URI location = new java.net.URI("../Index/index.html");
+				user = dao.findByToken(mtgapi.getPrivateToken());
+				if(user == null){
+					User u = new User(compte, session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], mtgapi.getPrivateToken());
+					dao.insertUser(u);
+				}
+				cookie = new NewCookie("ILEARN_TOKEN", mtgapi.getPrivateToken());
+				java.net.URI location;
+				if (compte.equals("ilearn"))
+					location = new java.net.URI("../Admin/stats.html");
+				else
+					location = new java.net.URI("../Index/index.html");
 				ResponseBuilder r = Response.temporaryRedirect(location);
 				r.cookie(cookie);
 				
-				
+
 				return r.build();
-//				System.out.println(user);
-//				System.out.println("================> PAR ICI 3");
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
 		cookie = new NewCookie("ILEARN_TOKEN", null);
 		return Response.noContent().cookie(cookie).build();
-		//return user;
-    }
+	}
 }
