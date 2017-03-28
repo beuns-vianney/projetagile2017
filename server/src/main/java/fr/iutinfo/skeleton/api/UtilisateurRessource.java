@@ -78,6 +78,7 @@ public class UtilisateurRessource {
 					User u = new User(compte, session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], mtgapi.getPrivateToken());
 					dao.insertUser(u);
 				}
+
 				cookie = new NewCookie("ILEARN_TOKEN", mtgapi.getPrivateToken());
 				java.net.URI location;
 				if (compte.equals("ilearn"))
