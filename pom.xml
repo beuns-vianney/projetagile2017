@@ -36,6 +36,7 @@
         <module>server</module>
         <module>client-library</module>
         <module>war</module>
+         <module>gitlab4j-api-master</module>
     </modules>
 
     <dependencies>

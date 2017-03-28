@@ -31,24 +31,24 @@ public class SecureViews {
         secureDto.setCurrentUser((User) context.getUserPrincipal());
         return secureDto;
     }
-
+/*
     @GET
     @Path("/login")
     public User login(@Context SecurityContext context, @QueryParam("user") String oldLogin, @Context UriInfo uriInfo) throws URISyntaxException {
         User currentUser = (User) context.getUserPrincipal();
         User oldUser = dao.findByName(oldLogin);
         if (oldUser == null) {
-            oldUser = User.getAnonymousUser();
+         //   oldUser = User.getAnonymousUser();
         }
         logger.debug("User - current : " + currentUser.toString() + ", old : " + oldUser.toString());
-        if (currentUser.getId() == oldUser.getId()) {
-            requestLoginForm();
-        } else {
-            setCookieAndRedirectToUserDetail(currentUser, uriInfo);
-        }
+      //  if (currentUser.getId() == oldUser.getId()) {
+       //     requestLoginForm();
+       // } else {
+      //      setCookieAndRedirectToUserDetail(currentUser, uriInfo);
+     //   }
         return null;
     }
-
+*/
     private void requestLoginForm() {
         throw new WebApplicationException(Response
                 .status(Response.Status.UNAUTHORIZED)
@@ -57,13 +57,13 @@ public class SecureViews {
     }
 
     private void setCookieAndRedirectToUserDetail(User currentUser, UriInfo uriInfo) throws URISyntaxException {
-        URI location = UriBuilder.fromResource(UserViews.class).path("/" + currentUser.getId()).build();
-        logger.debug("Redirect to " + location);
-        throw new WebApplicationException(Response
-                .temporaryRedirect(location)
-                .cookie(new NewCookie("user", currentUser.getName()))
-                .build()
-        );
+    //   URI location = UriBuilder.fromResource(UserViews.class).path("/" + currentUser.getId()).build();
+      //  logger.debug("Redirect to " + location);
+      //  throw new WebApplicationException(Response
+     //           .temporaryRedirect(location)
+     //           .cookie(new NewCookie("user", currentUser.getName()))
+     //           .build()
+      //  );
     }
 }
 

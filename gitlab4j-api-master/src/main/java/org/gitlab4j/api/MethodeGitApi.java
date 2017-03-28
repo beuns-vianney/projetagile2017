@@ -1,24 +1,24 @@
-package fr.iutinfo.skeleton.api;
+package org.gitlab4j.api;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-import org.gitlab4j.api.GitLabApi;
-import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Commit;
 import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.RepositoryFile;
 import org.gitlab4j.api.models.Session;
+
+
 
 public class MethodeGitApi {
 
 
 
 	private int nombredecommit=1;
-	private final static String serveur = "https://git-iut.univ-lille1.fr/";
-	private String Private_token;
+	private final static String serveur = "https://git-iut.univ-lille1.fr";
+	private String private_token="kkimkpRuCqz6axnpDz86";
 	private GitLabApi glapi;
 	private Integer numeroproject;
 	private List<String> nomModule=new ArrayList<>();
@@ -29,22 +29,31 @@ public class MethodeGitApi {
 
 
 	public MethodeGitApi(){
-		GitLabApi gitLabApi = new GitLabApi(serveur, Private_token);
+		GitLabApi gitLabApi = new GitLabApi(serveur, private_token);
 		glapi=gitLabApi;
 
 		initialiserList();
 	}
+	
+	public static void main(String[] args) {
+		MethodeGitApi m=new MethodeGitApi();
+		Session s=m.login("ilearn", "agile2017");
+	}
 
 	public Session login(String username,String passwd){
-		GitLabApi git = new GitLabApi(serveur, "ZMzK4uyHXpvCBwut2yka");
+		glapi=new GitLabApi(serveur, private_token);
+		Session session;
 		try {
-
-			Session s = git.getSessionApi().login(username, null, passwd);
-			this.Private_token=s.getPrivateToken();
-			return s;
+			System.out.println("CHALUT");
+			session = glapi.getSessionApi().login(username, null, passwd);
+			System.out.println("CHAVA");
+			System.out.println(session.getPrivateToken());
+			System.out.println("Session: " + session.getUsername());
+			return session;
 		} catch (GitLabApiException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -181,9 +190,9 @@ public class MethodeGitApi {
 		contenuLastCommit=lcommit.get(0).getMessage();
 		System.out.println(contenuLastCommit);
 	}
-
+/*
 	public static void main(String[] args) throws GitLabApiException {
-		MethodeGitApi outil=new MethodeGitApi("ilearn", "agile2017");
+		/*MethodeGitApi outil=new MethodeGitApi();
 
 		try{
 			outil.Construire_Project(outil.glapi, "I-Learn-Repository", "Programmation DUT-Info");
@@ -196,10 +205,12 @@ public class MethodeGitApi {
 		}catch (Exception e) {}
 		outil.recupCommits(outil.glapi, outil.numeroproject);
 		//outil.test(outil);
-	}
+		//outil.test(outil);
+	}*/
+
 
 	public String getPrivateToken() {
-		return Private_token;
+		return private_token;
 	}
 
 	/*public void test(MethodeGitApi outil){

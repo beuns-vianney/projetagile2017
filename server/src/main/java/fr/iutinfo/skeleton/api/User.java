@@ -12,166 +12,110 @@ import java.security.SecureRandom;
 
 public class User implements Principal {
     final static Logger logger = LoggerFactory.getLogger(User.class);
-    private static User anonymous = new User(-1, "Anonymous", "anonym");
-    private String name;
-    private String alias;
-    private int id = 0;
-    private String email;
-    private String password;
-    private String passwdHash;
-    private String salt;
-    private String search;
+    private String login;
+    private String nom;
+    private String prenom;
+    private String token;
+    private char groupe;
+    private int rang;
 
-    public User(int id, String name) {
-        this.id = id;
-        this.name = name;
+
+    public User(String login, String nom,String prenom,String token) {
+        this.login = login;
+        this.nom = nom;
+        this.prenom=prenom;
+        this.token=token;
     }
 
-    public User(int id, String name, String alias) {
-        this.id = id;
-        this.name = name;
-        this.alias = alias;
-    }
 
     public User() {
     }
 
-    public static User getAnonymousUser() {
-        return anonymous;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        passwdHash = buildHash(password, getSalt());
-        this.password = password;
-    }
-
-    private String buildHash(String password, String s) {
-        Hasher hasher = Hashing.sha256().newHasher();
-        hasher.putString(password + s, Charsets.UTF_8);
-        return hasher.hash().toString();
-    }
-
-    public boolean isGoodPassword(String password) {
-        if (isAnonymous()) {
-            return false;
-        }
-        String hash = buildHash(password, getSalt());
-        return hash.equals(getPasswdHash());
-    }
-
-    public String getPasswdHash() {
-        return passwdHash;
-    }
-
-    public void setPasswdHash(String passwdHash) {
-        this.passwdHash = passwdHash;
-    }
-
-    @Override
-    public boolean equals(Object arg) {
-        if (getClass() != arg.getClass())
-            return false;
-        User user = (User) arg;
-        return name.equals(user.name) && alias.equals(user.alias) && email.equals(user.email) && passwdHash.equals(user.getPasswdHash()) && salt.equals((user.getSalt()));
-    }
-
     @Override
     public String toString() {
-        return id + ": " + alias + ", " + name + " <" + email + ">";
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public String getSalt() {
-        if (salt == null) {
-            salt = generateSalt();
-        }
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    private String generateSalt() {
-        SecureRandom random = new SecureRandom();
-        Hasher hasher = Hashing.sha256().newHasher();
-        hasher.putLong(random.nextLong());
-        return hasher.hash().toString();
-    }
-
-    public void resetPasswordHash() {
-        if (password != null && !password.isEmpty()) {
-            setPassword(getPassword());
-        }
-    }
-
-    public boolean isInUserGroup() {
-        return !(id == anonymous.getId());
-    }
-
-    public boolean isAnonymous() {
-        return this.getId() == getAnonymousUser().getId();
-    }
-
-    public String getSearch() {
-        search = name + " " + alias + " " + email;
-        return search;
-    }
-
-    public void setSearch(String search) {
-        this.search = search;
+        return login + ": " + nom + ", " + prenom + " <" + token + ">";
     }
 
     public void initFromDto(UserDto dto) {
-        this.setAlias(dto.getAlias());
-        this.setEmail(dto.getEmail());
-        this.setId(dto.getId());
-        this.setName(dto.getName());
-        this.setPassword(dto.getPassword());
+        this.setLogin(dto.getLogin());
+        this.setNom(dto.getNom());
+        this.setPrenom(dto.getPrenom());
+        this.setToken(dto.getToken());
     }
 
-    public UserDto convertToDto() {
+    public String getLogin() {
+		return login;
+	}
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
+	public char getGroupe() {
+		return groupe;
+	}
+
+
+	public void setGroupe(char groupe) {
+		this.groupe = groupe;
+	}
+
+
+	public int getRang() {
+		return rang;
+	}
+
+
+	public void setRang(int rang) {
+		this.rang = rang;
+	}
+
+
+	public UserDto convertToDto() {
         UserDto dto = new UserDto();
-        dto.setAlias(this.getAlias());
-        dto.setEmail(this.getEmail());
-        dto.setId(this.getId());
-        dto.setName(this.getName());
-        dto.setPassword(this.getPassword());
+        dto.setNom(this.getNom());
+        dto.setPrenom(this.getPrenom());
+        dto.setLogin(this.getLogin());
+        dto.setToken(this.getToken());
         return dto;
     }
+
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return nom;
+	}
 }

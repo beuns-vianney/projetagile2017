@@ -7,34 +7,54 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import java.util.List;
 
 public interface UserDao {
-    @SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100), alias varchar(100), email varchar(100), passwdHash varchar(64), salt varchar(64), search varchar(1024))")
+    @SqlUpdate("CREATE TABLE users (login VARCHAR(15) PRIMARY KEY, nom VARCHAR(100), prenom VARCHAR(100), token VARCHAR(250), groupe char, rang INTEGER NOT NULL  DEFAULT 1)")
     void createUserTable();
+    
+    @SqlUpdate("CREATE TABLE tp (tpid INTEGER PRIMARY KEY AUTOINCREMENT, titre VARCHAR(100), categ VARCHAR(100), path VARCHAR(100), acess integer)")
+    void createTpTable();
+    
+    @SqlUpdate("CREATE TABLE progres (login varchar(15),tpid integer, progress integer,nbcompil integer)")
+    void createProgresTable();
 
-    @SqlUpdate("insert into users (name,alias,email, passwdHash, salt, search) values (:name, :alias, :email, :passwdHash, :salt, :search)")
+    @SqlUpdate("insert into users (login,nom,prenom,token) values (:login, :nom, :prenom, :token)")
     @GetGeneratedKeys
-    int insert(@BindBean() User user);
+    int insertUser(@BindBean() User user);
+    
+    @SqlUpdate("insert into tp (tpid,categ,titre,path) values (:id, :categ, :titre, :path)")
+    @GetGeneratedKeys
+    int insertTp(@BindBean() Tp tp);
+    
+    @SqlUpdate("update users groupe=:groupe where login=:login")
+    @GetGeneratedKeys
+    int updateGroupeEtu(@BindBean("login") String login,@BindBean("groupe") char groupe);
 
-    @SqlQuery("select * from users where name = :name")
+    @SqlQuery("select * from users where groupe=:groupe")
     @RegisterMapperFactory(BeanMapperFactory.class)
-    User findByName(@Bind("name") String name);
-
-    @SqlQuery("select * from users where search like :name")
-    @RegisterMapperFactory(BeanMapperFactory.class)
-    List<User> search(@Bind("name") String name);
+    User findByGroupe(@Bind("groupe") char groupe);
 
     @SqlUpdate("drop table if exists users")
     void dropUserTable();
+    
+    @SqlUpdate("drop table if exists tp")
+    void dropTpTable();
+    
+    @SqlUpdate("drop table if exists progres")
+    void dropProgresTable();
 
-    @SqlUpdate("delete from users where id = :id")
+    @SqlUpdate("delete from users where login = :login")
     void delete(@Bind("id") int id);
 
-    @SqlQuery("select * from users order by id")
+    @SqlQuery("select * from users order by login")
     @RegisterMapperFactory(BeanMapperFactory.class)
     List<User> all();
-
-    @SqlQuery("select * from users where id = :id")
+    
+    @SqlQuery("select * from users order by login")
     @RegisterMapperFactory(BeanMapperFactory.class)
-    User findById(@Bind("id") int id);
+    List<StatisticEtu> statistiqueetu(@Bind("login") String login);
+
+    @SqlQuery("select * from users where login = :login")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    User findByLogin(@Bind("login") String login);
 
     void close();
 }

@@ -7,50 +7,71 @@ import java.security.Principal;
 
 public class UserDto implements Principal {
     final static Logger logger = LoggerFactory.getLogger(UserDto.class);
-    private String name;
-    private String alias;
-    private int id = 0;
-    private String email;
-    private String password;
+    private String login;
+    private String nom;
+    private String prenom;
+    private String token;
+    private char groupe;
+    private int rang;
+    
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return nom;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public String getNom() {
+		return nom;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getPrenom() {
+		return prenom;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 
-    public String getPassword() {
-        return this.password;
-    }
+	public String getToken() {
+		return token;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-    public String getAlias() {
-        return alias;
-    }
+	public char getGroupe() {
+		return groupe;
+	}
 
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
+	public void setGroupe(char groupe) {
+		this.groupe = groupe;
+	}
+
+	public int getRang() {
+		return rang;
+	}
+
+	public void setRang(int rang) {
+		this.rang = rang;
+	}
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
+   
 
 }

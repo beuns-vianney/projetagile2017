@@ -31,20 +31,16 @@ public class UserResource {
     private static UserDao dao = getDbi().open(UserDao.class);
 
     public UserResource() throws SQLException {
-        if (!tableExist("users")) {
-            logger.debug("Crate table users");
-            dao.createUserTable();
-            dao.insert(new User(0, "Margaret Thatcher", "la Dame de fer"));
-        }
+        new UtilisateurRessource();
     }
-
+/*
     @POST
     public UserDto createUser(UserDto dto) {
         User user = new User();
         user.initFromDto(dto);
-        user.resetPasswordHash();
-        int id = dao.insert(user);
-        dto.setId(id);
+      // user.resetPasswordHash();
+      //  int id = dao.insert(user);
+      //  dto.setId(id);
         return dto;
     }
 
@@ -56,7 +52,7 @@ public class UserResource {
             throw new WebApplicationException(404);
         }
         return user.convertToDto();
-    }
+    }*/
 //    
 //    @POST
 //    @Path("/compile")
@@ -68,7 +64,7 @@ public class UserResource {
 //    	//Return erreur/succes
 //    	return null;
 //    }
-    
+    /*
     @GET
     public List<UserDto> getAllUsers(@QueryParam("q") String query) {
         List<User> users;
@@ -76,10 +72,10 @@ public class UserResource {
             users = dao.all();
         } else {
             logger.debug("Search users with query: " + query);
-            users = dao.search("%" + query + "%");
+           // users = dao.search("%" + query + "%");
         }
-        return users.stream().map(User::convertToDto).collect(Collectors.toList());
-    }
+       //return users.stream().map(User::convertToDto).collect(Collectors.toList());
+    }*/
 
     @DELETE
     @Path("/{id}")
