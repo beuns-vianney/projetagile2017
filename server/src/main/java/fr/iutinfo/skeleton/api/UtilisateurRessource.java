@@ -32,17 +32,11 @@ public class UtilisateurRessource {
 
 	final static Logger logger = LoggerFactory.getLogger(UserResource.class);
 	private static UserDao dao = getDbi().open(UserDao.class);
-	/*
+	
     public static void main(String[] args) {
-    	dao.dropUserTable();
-        dao.createUserTable();
-        dao.dropTpTable();
-        dao.createTpTable();
-        dao.dropProgresTable();
-        dao.createProgresTable();
-        dao.insertUser(new User("belsa","bels","alexis",""));
-        dao.insertTp(new Tp(0,"m0000","tp1","./"));
-	}*/
+    	dao.updateProgression("belsa",65,0);
+    	dao.incrementCompil("belsa",0);
+	}
 
 	public UtilisateurRessource() throws SQLException {
 		if (!tableExist("users")) {
@@ -81,10 +75,6 @@ public class UtilisateurRessource {
 			mtgapi = new MethodeGitApi(); 
 			Session session = mtgapi.login(compte, mdp);
 			if (session != null) {
-				//				user = RequeteBDD.usersByToken(mtgapi.getPrivateToken());
-				//				if (user == null) {
-				//					RequeteBDD.insert(session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], 1, 1, session.getPrivateToken());
-				//				}
 				user = dao.findByToken(mtgapi.getPrivateToken());
 				if(user == null){
 					User u = new User(compte, session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], mtgapi.getPrivateToken());

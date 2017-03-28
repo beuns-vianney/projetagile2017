@@ -33,4 +33,8 @@ public class BDDFactory {
         tables.close();
         return exist;
     }
+    
+    public static void main(String[] args) {
+		System.out.println("jdbc:sqlite:" + System.getProperty("user.dir") + System.getProperty("file.separator") + "base_donne.db");
+	}
 }
