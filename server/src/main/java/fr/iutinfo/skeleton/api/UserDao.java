@@ -30,7 +30,7 @@ public interface UserDao {
     
     @SqlUpdate("update progres set nbcompil=(nbcompil+1) where login=:login and tpid=:tpid")
     @GetGeneratedKeys
-    int incrementCompil(@Bind("login") String login,@Bind("tpid") int tpid);  
+    int incrementCompil(@Bind("login") String login,@Bind("tpid") int tpid);
     
     @SqlUpdate("update progres set progress=:progress where login=:login and tpid=:tpid")
     int updateProgression(@Bind("login") String login,@Bind("progress") int progress,@Bind("tpid") int tpid);       
@@ -40,7 +40,11 @@ public interface UserDao {
 
     @SqlQuery("select * from users where groupe=:groupe")
     @RegisterMapperFactory(BeanMapperFactory.class)
-    User findByGroupe(@Bind("groupe") char groupe);
+    User findByGroupe(@Bind("groupe") String groupe);
+    
+    @SqlQuery("select tpid from tp where categ=:categ and titre=:titre")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    int getidbytitreandcateg(@Bind("categ") String categ,@Bind("titre") String titre);
 
     @SqlQuery("select * from users where token=:token")
     @RegisterMapperFactory(BeanMapperFactory.class)
