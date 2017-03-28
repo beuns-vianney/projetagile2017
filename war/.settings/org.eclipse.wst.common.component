@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="war">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <dependent-module archiveName="server-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/server/server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="common-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common/common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gitlab4j-api-4.0.9-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/gitlab4j-api-master/gitlab4j-api-master">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cli-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/command-line-interface/command-line-interface">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="client-library-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/client-library/client-library">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="war"/>
+        <property name="java-output-path" value="/war/target/classes"/>
+    </wb-module>
+</project-modules>
