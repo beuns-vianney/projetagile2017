@@ -40,6 +40,43 @@ function compile(div_editor, div_button, div_response, div_tests, next_button) {
     return oolean;
 }
 
+function compil_exec(div_editor, div_button, div_response) {
+    var editor = ace.edit(div_editor);
+
+    $(document).ready(function () {
+
+            console.log(editor.getValue());
+            var url = "../v1/exercice";
+            console.log("postUserGeneric " + url)
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: url,
+                dataType: "json",
+                data: JSON.stringify({
+                    "code": editor.getValue()
+                }),
+                success: function (data, textStatus, jqXHR) {
+                    
+                    if (data.retour == "Compilation Successful !") {
+                        $("#" + div_response).attr('class', 'console , valid');
+                        exec(data.name, url, div_response);
+                        
+                    } else {
+                        $("#" + div_response).attr('class', 'console , error');                        
+                    }
+                    $("#" + div_response).text(data.retour);
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('postUser error: ' + textStatus);
+                }
+        })
+
+    });
+}
+
+
 function exec(name, url, div_reponse){
     $.ajax({
        type: 'GET',
