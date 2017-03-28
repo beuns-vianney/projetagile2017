@@ -1,50 +1,143 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-	<title>iLearn - Accueil</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/style2.css">
+    <title>iLearn - Accueil</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style2.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
 </head>
 
 <body class="Main">
 
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">
-				<span class="logo"><img src="../img/logo.svg" width="90%"></span>
-			</a>
-		</div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <span class="logo"><img src="../img/logo.svg" width="90%"></span>
+            </a>
+        </div>
 
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="navlink, active"><a href="stats.html">Statistiques générales</a></li>
-				<li class="navlink"><a href="tp.html">Liste des TP</a></li>
-				<li class="navlink"><a href="eleve.html">Statistiques élèves</a></li>
-				<li class="linkout"><a href="connexion.html">Se déconnecter</a></li>
-			</ul>
-		</div>
-	</nav>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navlink, active"><a href="stats.html">Statistiques générales</a></li>
+                <li class="navlink"><a href="tp.html">Liste des TP</a></li>
+                <li class="navlink"><a href="eleve.html">Statistiques élèves</a></li>
+                <li class="linkout"><a href="connexion.html">Se déconnecter</a></li>
+            </ul>
+        </div>
+    </nav>
 
-	<script>
+    <script>
 
-	</script>
 
-	<div class="contain">
-		<div>
-			<h1> Bonjour Yann !</h1>
-			<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
-		</div>
-	
-		<div>
-			<h3> taux de completion globale des différents groupes par TP</h3>
-			<div id="tauxcompletion">
-			</div>
-		</div>
-	</div>
+    </script>
+
+    <div class="contain">
+        <div>
+            <h1> Bonjour Yann !</h1>
+            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
+        </div>
+
+        <div>
+            <h3> taux de completion globale des différents groupes par TP</h3>
+            <div id="tauxcompletion">
+                <!-- <div id="graphique2" style="display:inline-block; width: 50%; height=auto"> -->
+                <canvas id="Chart1"></canvas>
+                <script>
+                    var jsonallgroupalltp = {
+                        "tp1": ["50", "48", "60", "75"],
+                        "tp2": ["25", "30", "35", "33"],
+                        "tp3": ["30", "23", "43", "36"]
+                    }
+                    AllGroupAllTP(jsonallgroupalltp);
+
+                    function AllGroupAllTP(jsonallgroupalltp) {
+                        var hey = Object.keys(jsonallgroupalltp);
+                        console.log(jsonallgroupalltp);
+                        var ho = [];
+
+
+                        lineChartData = {}; //declare an object
+                        lineChartData.labels = hey; //add 'labels' element to object (X axis)
+                        lineChartData.datasets = []; //add 'datasets' array element to object
+
+                        for (var line = 0; line < hey.length; line++) {
+                            var ho = [];
+                            for (var i = 0; i < hey.length; i++) {
+                                ho.push((jsonallgroupalltp[hey[line]][i]));
+
+                            }
+                            console.log(ho);
+                            y = [];
+                            lineChartData.datasets.push({}); //create a new line dataset
+                            dataset = lineChartData.datasets[line]
+                            dataset.label = "Groupe " + (line + 1);
+                            dataset.borderColor = color = getRandomColor();
+                            dataset.fillColor = "rgba(0,0,0,0)";
+                            dataset.strokeColor = "rgba(200,200,200,1)";
+                            dataset.data = []; //contains the 'Y; axis data
+                            dataset.fill = false;
+                            dataset.lineTension = 0.1;
+                            dataset.backgroundColor = color;
+                            dataset.borderCapStyle = 'butt';
+                            dataset.borderDash = [];
+                            dataset.borderDashOffset = 0.0;
+                            dataset.borderJoinStyle = 'round';
+                            dataset.pointBorderColor = color;
+                            dataset.pointBackgroundColor = "#fff";
+                            dataset.pointBorderWidth = 1;
+                            dataset.pointHoverRadius = 5;
+                            dataset.pointHoverBackgroundColor = color;
+                            dataset.pointHoverBorderColor = "rgba(220,220,220,1)";
+                            dataset.pointHoverBorderWidth = 2;
+                            dataset.pointRadius = 1;
+                            dataset.pointHitRadius = 10;
+                            for (var x = 0; x < ho.length; x++) {
+                                y.push(ho[x]);
+                            }
+                            lineChartData.datasets[line].data = y;
+                        }
+
+                        ctx = document.getElementById("Chart1").getContext("2d");
+                        myLineChart = new Chart(ctx, {
+                            type: "line",
+                            data: lineChartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0,
+                                            max: 100,
+                                            beginAtZero: true,
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                        function getRandomColor() {
+                            var letters = '0123456789ABCDEF';
+                            var color = '#';
+                            for (var i = 0; i < 6; i++) {
+                                color += letters[Math.floor(Math.random() * 16)];
+                            }
+                            return color;
+                        }
+                    }
+
+                </script>
+            </div>
+        </div>
+    </div>
+    </div>
 
 
 
 </body>
+
 </html>
