@@ -74,11 +74,14 @@ public class UtilisateurRessource {
 				
 				if (!token.isEmpty()) {
 				user = dao.findByToken(mtgapi.getPrivateToken());
+				System.out.println(user);
 				if(user == null){
-					User u = new User(compte, session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], mtgapi.getPrivateToken());
+					User u = new User(compte, compte, compte, mtgapi.getPrivateToken());
+					System.out.println("user");
 					dao.insertUser(u);
+					System.out.println("insert");
 				}
-
+				
 				cookie = new NewCookie("ILEARN_TOKEN", mtgapi.getPrivateToken());
 				java.net.URI location;
 				if (compte.equals("ilearn"))
@@ -93,7 +96,7 @@ public class UtilisateurRessource {
 				}
 			}
 		}catch(Exception e){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		cookie = new NewCookie("ILEARN_TOKEN", null);
 		return Response.noContent().cookie(cookie).build();
