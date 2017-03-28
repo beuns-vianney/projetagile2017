@@ -9,8 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../css/style2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    	<script src="../js/compile.js"></script>
-	<script src="../js/all.js"></script>
+    <script src="../js/compile.js"></script>
+    <script src="../js/all.js"></script>
 
 </head>
 
@@ -88,24 +88,46 @@
         </table>
         <div class="table" , id="tableau1">
             <script>
-                statsEtu();
-                /*
-            <!--    var text = [{
-                        "Matiere": "Ijava",
-                        "Tp": "M1102",
+                var text = [{
+                        "Matiere": "M1102",
+                        "Tp": "TP1",
                         "Compilation": "3/12",
                         "Tests": "25",
+                        "lien": "acceder",
                     },
                     {
-                        "Matiere": "Ijava",
-                        "Tp": "M1102",
+                        "Matiere": "M1102",
+                        "Tp": "TP2",
                         "Compilation": "12/12",
-                        "Tests": "100"
+                        "Tests": "100",
+                        "lien": "TP1.html",
+                        "lien": "acceder",
+
                     }, {
-                        "Matiere": "Ijava",
-                        "Tp": "M1102",
+                        "Matiere": "M1102",
+                        "Tp": "TP3",
                         "Compilation": "6/12",
-                        "Tests": "50"
+                        "Tests": "50",
+                        "lien": "TP1.html",
+                        "lien": "acceder",
+
+                    },
+                    {
+                        "Matiere": "M1102",
+                        "Tp": "TP4",
+                        "Compilation": "12/12",
+                        "Tests": "100",
+                        "lien": "TP1.html",
+                        "lien": "acceder",
+
+                    }, {
+                        "Matiere": "M1102",
+                        "Tp": "TP5",
+                        "Compilation": "6/12",
+                        "Tests": "50",
+                        "lien": "TP1.html",
+                        "lien": "acceder",
+
                     }
                 ];
                 jsontoTable(text);
@@ -143,10 +165,10 @@
                             if (cpt == j) {
                                 tabCell.innerHTML = "<div class=\"progress\"><div class=\"progress-bar\" role=\"progressbar\" style=\"width: " + (text[i][col[j]]) + "%\"></div></div>";
                             } else {
-
                                 tabCell.innerHTML = text[i][col[j]];
                             }
                         }
+                        tabCell.innerHTML = "<a href = \"../M1102-1103/TP1.html\" >" + "acceder" + "</a>";
                     }
                     var divContainer = document.getElementById("tableau");
                     divContainer.innerHTML = "";
@@ -154,7 +176,7 @@
                     divContainer.appendChild(tbody);
 
                 }
--->*/
+
             </script>
         </div>
     </div>

@@ -76,7 +76,7 @@ public interface UserDao {
     
     @SqlQuery("select categ,titre,nbcompil,progress from progres,tp where progres.tpid=tp.tpid and login=:login")
     @RegisterMapperFactory(BeanMapperFactory.class)
-    StatisticEtu getStatEtu(@Bind("login") String login);
+    List<StatisticEtu> getStatEtu(@Bind("login") String login);
 
 
     void close();

@@ -101,4 +101,50 @@ public class UtilisateurRessource {
 		cookie = new NewCookie("ILEARN_TOKEN", null);
 		return Response.noContent().cookie(cookie).build();
 	}
+	
+	@POST
+	@Path("/connexionandroid")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces("application/json")
+	public StatisticEtu connectionandroid(@FormParam("identifiant") String compte, @FormParam("mdp") String mdp) {
+		StatisticEtu vaniquertamerelagrosse = new StatisticEtu("osef", "osef", 0, 0);
+		User user = null;
+		MethodeGitApi mtgapi;
+		NewCookie cookie = null;
+		String token;
+		try{
+			mtgapi = new MethodeGitApi(); 
+			Session session = mtgapi.login(compte, mdp);
+			token=mtgapi.getPrivateToken();
+			if (session != null) {
+				
+				if (!token.isEmpty()) {
+				user = dao.findByToken(mtgapi.getPrivateToken());
+				System.out.println(user);
+				if(user == null){
+					User u = new User(compte, compte, compte, mtgapi.getPrivateToken());
+					System.out.println("user");
+					dao.insertUser(u);
+					System.out.println("insert");
+				}
+				
+				cookie = new NewCookie("ILEARN_TOKEN", mtgapi.getPrivateToken());
+				java.net.URI location;
+				if (compte.equals("ilearn"))
+					location = new java.net.URI("../Admin/stats.html");
+				else
+					location = new java.net.URI("../Index/index.html");
+				ResponseBuilder r = Response.temporaryRedirect(location);
+				r.cookie(cookie);
+				
+
+				return vaniquertamerelagrosse;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		cookie = new NewCookie("ILEARN_TOKEN", null);
+		return vaniquertamerelagrosse;
+	}
 }
