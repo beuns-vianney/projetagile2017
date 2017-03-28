@@ -33,11 +33,6 @@ public class UtilisateurRessource {
 	final static Logger logger = LoggerFactory.getLogger(UserResource.class);
 	private static UserDao dao = getDbi().open(UserDao.class);
 	
-    public static void main(String[] args) {
-    	dao.updateProgression("belsa",65,0);
-    	dao.incrementCompil("belsa",0);
-	}
-
 	public UtilisateurRessource() throws SQLException {
 		if (!tableExist("users")) {
 			logger.debug("Create table users");

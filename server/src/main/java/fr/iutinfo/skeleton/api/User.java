@@ -1,14 +1,11 @@
 package fr.iutinfo.skeleton.api;
 
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hasher;
-import com.google.common.hash.Hashing;
-import fr.iutinfo.skeleton.common.dto.UserDto;
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.security.Principal;
-import java.security.SecureRandom;
+import fr.iutinfo.skeleton.common.dto.UserDto;
 
 public class User implements Principal {
     final static Logger logger = LoggerFactory.getLogger(User.class);
@@ -16,7 +13,7 @@ public class User implements Principal {
     private String nom;
     private String prenom;
     private String token;
-    private char groupe;
+    private String groupe;
     private int rang;
 
 
@@ -83,12 +80,12 @@ public class User implements Principal {
 	}
 
 
-	public char getGroupe() {
+	public String getGroupe() {
 		return groupe;
 	}
 
 
-	public void setGroupe(char groupe) {
+	public void setGroupe(String groupe) {
 		this.groupe = groupe;
 	}
 
@@ -115,7 +112,6 @@ public class User implements Principal {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return nom;
 	}
 }
