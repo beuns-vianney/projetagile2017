@@ -33,7 +33,7 @@ public class ExerciceRessource {
 		}
 		name = codeNettoye.split(" ")[1];
 		System.out.println(name);
-		File fichier = Exercice.StringtoJava(codeNettoye, "./tmp/" + name + ".java");
+		File fichier = Exercice.StringtoJava(codeNettoye, "./" + name + ".java");
 		StringBuffer reponseCompilation = new StringBuffer();
 		ArrayList<String> l = (ArrayList<String>) JavaCompilerProject.CompilationIJava(fichier);
 		for (String string : l) {
@@ -52,7 +52,7 @@ public class ExerciceRessource {
 	public ExecReturn getExecution(){
 		ArrayList<String> results =null;
 		try {
-			results = (ArrayList<String>) ExecIJava.runProgrammIJava(name, new File("./tmp"));
+			results = (ArrayList<String>) ExecIJava.runProgrammIJava(name, new File("."));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
