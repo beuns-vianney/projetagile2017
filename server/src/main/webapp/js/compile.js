@@ -40,7 +40,7 @@ function compile(div_editor, div_button, div_response, div_tests, next_button) {
     return oolean;
 }
 
-function compil_exec(div_editor, div_button, div_response) {
+function compil_exec(div_editor, div_response) {
     var editor = ace.edit(div_editor);
 
     $(document).ready(function () {
@@ -59,7 +59,6 @@ function compil_exec(div_editor, div_button, div_response) {
                 success: function (data, textStatus, jqXHR) {
                     
                     if (data.retour == "Compilation Successful !") {
-                        $("#" + div_response).attr('class', 'console , valid');
                         exec(data.name, url, div_response);
                         
                     } else {
@@ -83,9 +82,10 @@ function exec(name, url, div_reponse){
         url: url,
         dataType: "json",
         success: function (data) {
+            $('#' + div_reponse).text("");
             for(var i = 0; i<data.retour.length; i++){
                 console.log(data.retour[i]);
-                $('#' + div_reponse).text(data.retour[i]);
+                $('#' + div_reponse).text($('#' + div_reponse).text() +"\n"+ data.retour[i]);
             }
        },
        error : function(jqXHR, textStatus, errorThrown) {
