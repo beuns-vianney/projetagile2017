@@ -29,9 +29,9 @@ import fr.iutinfo.skeleton.common.dto.UserDto;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UtilisateurRessource {
-    
+
 	final static Logger logger = LoggerFactory.getLogger(UserResource.class);
-    private static UserDao dao = getDbi().open(UserDao.class);
+	private static UserDao dao = getDbi().open(UserDao.class);
 	/*
     public static void main(String[] args) {
     	dao.dropUserTable();
@@ -43,32 +43,32 @@ public class UtilisateurRessource {
         dao.insertUser(new User("belsa","bels","alexis",""));
         dao.insertTp(new Tp(0,"m0000","tp1","./"));
 	}*/
-    
-	public UtilisateurRessource() throws SQLException {
-        if (!tableExist("users")) {
-            logger.debug("Create table users");
-            dao.createUserTable();
-            dao.insertUser(new User("belsa","bels","alexis",""));
-        }
-        if (!tableExist("users")) {
-        dao.createTpTable();
-        dao.insertTp(new Tp(0,"m0000","tp1","./"));
-        }
-        if (!tableExist("progres")) {
-        dao.createProgresTable();
-        }
-    }
 
-	 @GET
-	    @Path("/{login}")
-	    public UserDto getUser(@PathParam("login") String login) {
-	        User user = dao.findByLogin(login);
-	        if (user == null) {
-	            throw new WebApplicationException(404);
-	        }
-	        return user.convertToDto();
-	    }
-	
+	public UtilisateurRessource() throws SQLException {
+		if (!tableExist("users")) {
+			logger.debug("Create table users");
+			dao.createUserTable();
+			dao.insertUser(new User("belsa","bels","alexis",""));
+		}
+		if (!tableExist("users")) {
+			dao.createTpTable();
+			dao.insertTp(new Tp(0,"m0000","tp1","./"));
+		}
+		if (!tableExist("progres")) {
+			dao.createProgresTable();
+		}
+	}
+
+	@GET
+	@Path("/{login}")
+	public UserDto getUser(@PathParam("login") String login) {
+		User user = dao.findByLogin(login);
+		if (user == null) {
+			throw new WebApplicationException(404);
+		}
+		return user.convertToDto();
+	}
+
 	@POST
 	@Path("/connexion")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -76,21 +76,25 @@ public class UtilisateurRessource {
 		Utilisateur user = null;
 		MethodeGitApi mtgapi;
 		NewCookie cookie = null;
-	    
+
 		try{
 			mtgapi = new MethodeGitApi(); 
 			Session session = mtgapi.login(compte, mdp);
 			if (session != null) {
-//				user = RequeteBDD.usersByToken(mtgapi.getPrivateToken());
-//				if (user == null) {
-//					RequeteBDD.insert(session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], 1, 1, session.getPrivateToken());
-//				}
+				//				user = RequeteBDD.usersByToken(mtgapi.getPrivateToken());
+				//				if (user == null) {
+				//					RequeteBDD.insert(session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], 1, 1, session.getPrivateToken());
+				//				}
 				cookie = new NewCookie("ILEARN_TOKEN", mtgapi.getPrivateToken());
-				
-				java.net.URI location = new java.net.URI("../Index/index.html");
+				java.net.URI location;
+				if (compte.equals("ilearn"))
+					location = new java.net.URI("../Admin/stats.html");
+				else
+					location = new java.net.URI("../Index/index.html");
 				ResponseBuilder r = Response.temporaryRedirect(location);
 				r.cookie(cookie);
 				
+
 				return r.build();
 			}
 		}catch(Exception e){
@@ -98,5 +102,5 @@ public class UtilisateurRessource {
 		}
 		cookie = new NewCookie("ILEARN_TOKEN", null);
 		return Response.noContent().cookie(cookie).build();
-    }
+	}
 }
