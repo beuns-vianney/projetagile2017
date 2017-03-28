@@ -31,7 +31,7 @@ public class SecureViews {
         secureDto.setCurrentUser((User) context.getUserPrincipal());
         return secureDto;
     }
-
+/*
     @GET
     @Path("/login")
     public User login(@Context SecurityContext context, @QueryParam("user") String oldLogin, @Context UriInfo uriInfo) throws URISyntaxException {
@@ -48,7 +48,7 @@ public class SecureViews {
      //   }
         return null;
     }
-
+*/
     private void requestLoginForm() {
         throw new WebApplicationException(Response
                 .status(Response.Status.UNAUTHORIZED)

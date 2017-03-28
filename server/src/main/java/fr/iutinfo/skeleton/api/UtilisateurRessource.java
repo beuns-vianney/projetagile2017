@@ -32,7 +32,18 @@ public class UtilisateurRessource {
     
 	final static Logger logger = LoggerFactory.getLogger(UserResource.class);
     private static UserDao dao = getDbi().open(UserDao.class);
-	
+	/*
+    public static void main(String[] args) {
+    	dao.dropUserTable();
+        dao.createUserTable();
+        dao.dropTpTable();
+        dao.createTpTable();
+        dao.dropProgresTable();
+        dao.createProgresTable();
+        dao.insertUser(new User("belsa","bels","alexis",""));
+        dao.insertTp(new Tp(0,"m0000","tp1","./"));
+	}*/
+    
 	public UtilisateurRessource() throws SQLException {
         if (!tableExist("users")) {
             logger.debug("Create table users");
