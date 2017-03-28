@@ -63,16 +63,21 @@ function tests(name, url, div_reponse, div_tests, next_button){
         url: url+"/tests",
         dataType: "json",
         success: function (data) {
-            for(var i = 0; i<data.retour.length; i++){
+            if(data.retour.length <= 1){
+                $('#' + div_reponse).text("Aucun tests à effectuer.");
+            }else{
+                for(var i = 0; i<data.retour.length; i++){
                 console.log(data.retour[i]);
                 $('#' + div_reponse).text(data.retour[i]);
+                }
+                if(!testOK($('#' + div_reponse).text())){
+                   $('#' + div_reponse).attr("class", 'console , error')
+                }
+                if(testOK($('#' + div_reponse).text()) && testOK($('#' + div_tests).text())){
+                    $('#'+next_button).attr("class", "button btn-action");
+                }
             }
-            if(!testOK($('#' + div_reponse).text())){
-               $('#' + div_reponse).attr("class", 'console , error')
-            }
-            if(testOK($('#' + div_reponse).text()) && testOK($('#' + div_tests).text())){
-                $('#'+next_button).attr("class", "button btn-action");
-            }
+            
             
        },
        error : function(jqXHR, textStatus, errorThrown) {
