@@ -29,7 +29,7 @@ Nom du scrum master du sprint : Bels Alexis
 -Base de données
 
 ### À quoi verra-t-on que celà à fonctionné ?
--le résultat
+-le résultat des méthodes: création d'un project sur git via l'api
 
 # Mémo
 N'oubliez pas d'ajouter une photo du radiateur d'information au moment de la rétrospective.

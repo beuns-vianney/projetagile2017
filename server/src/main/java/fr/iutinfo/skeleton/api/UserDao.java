@@ -3,6 +3,7 @@ package fr.iutinfo.skeleton.api;
 import org.skife.jdbi.v2.sqlobject.*;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
 import org.skife.jdbi.v2.tweak.BeanMapperFactory;
+import org.skife.jdbi.v2.unstable.BindIn;
 
 import java.util.List;
 
@@ -24,8 +25,17 @@ public interface UserDao {
     @GetGeneratedKeys
     int insertTp(@BindBean() Tp tp);
     
-    @SqlUpdate("update users groupe=:groupe where login=:login")
+    @SqlUpdate("insert into progres (login,tpid,nbcompil,progress) values (:login, :id,0,0)")
+    int insertProgress(@BindBean() StatisticEtu statétu);
+    
+    @SqlUpdate("update progres set nbcompil=(nbcompil+1) where login=:login and tpid=:tpid")
     @GetGeneratedKeys
+    int incrementCompil(@Bind("login") String login,@Bind("tpid") int tpid);  
+    
+    @SqlUpdate("update progres set progress=:progress where login=:login and tpid=:tpid")
+    int updateProgression(@Bind("login") String login,@Bind("progress") int progress,@Bind("tpid") int tpid);       
+    
+    @SqlUpdate("update users set groupe=:groupe where login=:login")
     int updateGroupeEtu(@BindBean("login") String login,@BindBean("groupe") char groupe);
 
     @SqlQuery("select * from users where groupe=:groupe")
@@ -59,6 +69,11 @@ public interface UserDao {
     @SqlQuery("select * from users where login = :login")
     @RegisterMapperFactory(BeanMapperFactory.class)
     User findByLogin(@Bind("login") String login);
+    
+    @SqlQuery("select categ,titre,nbcompil,progress from progres,tp where progres.tpid=tp.tpid and login=:login")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    StatisticEtu getStatEtu(@Bind("login") String login);
+
 
     void close();
 }

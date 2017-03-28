@@ -14,7 +14,7 @@ Nom du scrum master du sprint : Beuns Vianney
 
 ## PDCA 
 ### Qu'avons nous testé durant ce sprint ? 
--API GIT
+-API GIT: changement d'api car compréhension du code par la lecture de l'api
 -Gestion du code lorsqu'il compile
 
 ### Qu'avons nous observé ? 
@@ -28,7 +28,7 @@ Nom du scrum master du sprint : Beuns Vianney
 -Base de données
 
 ### À quoi verra-t-on que celà à fonctionné ?
--le résultat
+- L'api sera capable de nous récuperer un private token et nous initialiser un project (car on à eu plus d'explication sur le oath 2)
 
 # Mémo
-N'oubliez pas d'ajouter une photo du radiateur d'information au moment de la rétrospective.
+/bin/bash: q : commande introuvable

@@ -1,6 +1,6 @@
 # Rétrospective de sprint
 
-Nom du scrum master du sprint : __BEUNS Vianney__
+Nom du scrum master du sprint : BEUNS Vianney
 
 ## Ce que nous avons fait durant ce sprint
 -Nous avons fini de mettre le serveur en place dans sa version la plus primaire.
@@ -13,9 +13,10 @@ Nom du scrum master du sprint : __BEUNS Vianney__
 
 ## PDCA 
 ### Qu'avons nous testé durant ce sprint ? 
-
+Mise en place de Maven sur tout les postes
+Création d'une page html
 ### Qu'avons nous observé ? 
-
+Pour l'instant Maven fonctionne , ainsi que le début de de la page html
 ### Quelle décision prenons nous suite à cette expérience ? 
 
 ### Qu'allons nous tester durant les 2 prochaines heures ? 

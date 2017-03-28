@@ -19,19 +19,22 @@ Nom du scrum master du sprint : Bels Alexis
 ### Qu'avons nous testé durant ce sprint ? 
 -Envoyer du code serveur
 -Gestion des erreurs 
+-GITLAB à base de curl.
 
 ### Qu'avons nous observé ? 
--Ca marche
+-Problème au niveau de gitlab avec curl , beaucoup de doc à lire et problème d'authentification.
+Le serveur peut bien renvoyer un code
 
 # Quelle décision prenons nous suite à cette expérience ? 
--On continue sur cette lancé
+-Une personne rejoint  la recherche sur GITLAB ( Maxime)
+ 
 
 ### Qu'allons nous tester durant les 2 prochaines heures ? 
 -API gitlab
 -Base de données
 
 ### À quoi verra-t-on que celà à fonctionné ?
--le résultat
+-Nous pourrons au moins créer un projet par curl.
 
 # Mémo
 N'oubliez pas d'ajouter une photo du radiateur d'information au moment de la rétrospective.
