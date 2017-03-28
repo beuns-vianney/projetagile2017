@@ -65,11 +65,14 @@ public class UtilisateurRessource {
 		User user = null;
 		MethodeGitApi mtgapi;
 		NewCookie cookie = null;
-
+		String token;
 		try{
 			mtgapi = new MethodeGitApi(); 
 			Session session = mtgapi.login(compte, mdp);
+			token=mtgapi.getPrivateToken();
 			if (session != null) {
+				
+				if (!token.isEmpty()) {
 				user = dao.findByToken(mtgapi.getPrivateToken());
 				if(user == null){
 					User u = new User(compte, session.getEmail().split(".")[1].split("@")[0], session.getEmail().split(".")[0], mtgapi.getPrivateToken());
@@ -86,6 +89,7 @@ public class UtilisateurRessource {
 				
 
 				return r.build();
+				}
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage());
